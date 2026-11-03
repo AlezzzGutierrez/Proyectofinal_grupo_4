@@ -1,13 +1,9 @@
-import { useState } from 'react'
+import JuegoComida from "./pages/JuegoComida.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => (
+  <JuegoComida
+    onSiguienteDesafio={() => console.log("Pasar al siguiente desafío")}
+  />
+);
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-    </>
-  )
-}
-
-export default App
+export default App;
