@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { JuegoProvider } from "./contexts/JuegoContext.jsx";
+import Menu from "./components/Menu.jsx";
 
 function App() {
     return (
@@ -9,6 +10,7 @@ function App() {
             {/* El Outlet es el lugar donde se renderizan
                 los componentes correspondientes a las rutas hijas */}
             <main className="py-4">
+                <Menu />
                 <Outlet />
             </main>
 
