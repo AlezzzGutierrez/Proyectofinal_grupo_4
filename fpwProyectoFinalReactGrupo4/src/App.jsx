@@ -1,16 +1,19 @@
-import { useState } from 'react'
-import { JuegoProvider } from './contexts/JuegoContext'
+import { Outlet } from "react-router-dom";
+import { JuegoProvider } from "./contexts/JuegoContext.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        // Envuelvo los componentes que necesitan acceder a los datos compartidos con el Provider
+        <JuegoProvider>
 
-  return (
-    //envuelvo los componentes que necesitan acceder a los datos del contexto con el provider
-    <JuegoProvider>
-      //el outlet es el lugar donde se renderizan los componentes hijos de la ruta
-      <Outlet />
-    </JuegoProvider>
-  )
+            {/* El Outlet es el lugar donde se renderizan
+                los componentes correspondientes a las rutas hijas */}
+            <main className="py-4">
+                <Outlet />
+            </main>
+
+        </JuegoProvider>
+    );
 }
 
-export default App
+export default App;

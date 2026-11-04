@@ -1,12 +1,17 @@
-import {  useContext } from "react";
-import { JuegoContext } from "../contexts/JuegoContext";
+import { useContext } from "react";
+import { JuegoContext } from "../contexts/JuegoContext.jsx";
 
-//hook personalizado para poder acceder a los datos del contexto
-const useJuego = () => { 
+// Hook personalizado para acceder a los datos del contexto
+export const useJuego = () => {
+
+    // Obtiene los datos que proporciona JuegoContext
     const contexto = useContext(JuegoContext);
-//si el contexto es nulo, significa que el hook se está usando fuera del provider
+
+    
     if (!contexto) {
         throw new Error("useJuego debe ser usado dentro de un JuegoProvider");
     }
+
+    // Devuelve los datos y funciones disponibles en el contexto
     return contexto;
 };
