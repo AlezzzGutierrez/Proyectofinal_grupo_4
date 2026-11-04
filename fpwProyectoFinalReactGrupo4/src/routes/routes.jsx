@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-
-import Inicio from "../pages/Inicio.jsx";
+import Login from "../components/Login.jsx";
 import JuegoComida from "../pages/JuegoComida.jsx";
 import JuegoIntruso from "../pages/JuegoIntruso.jsx";
 import Resultados from "../pages/Resultados.jsx";
@@ -16,7 +15,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Inicio />
+                element: <Login />
             },
             {
                 path: "comida",
