@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useJuego } from "../hooks/useJuego.js";
+import { useNavigate } from "react-router-dom";
 
 export const Inicio = () => {
   const { comenzar } = useJuego();
   const [nombre, setNombre] = useState("");
+  const navigate = useNavigate();
 
   const enviar = (evento) => {
     evento.preventDefault();
-    if (nombre.trim()) comenzar(nombre);
-  };
+
+    if (nombre.trim()) {
+        comenzar(nombre);
+        navigate("/comida");
+    }
+};
 
   return (
     <Container className="text-center mt-4" style={{ maxWidth: "480px" }}>

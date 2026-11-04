@@ -1,13 +1,26 @@
 import { Alert, Button, Container, ListGroup } from "react-bootstrap";
 import { useJuego } from "../hooks/useJuego.js";
 import { mensajeFelicitacion } from "../services/JuegoService";
+import { useNavigate } from "react-router-dom";
 
 export const Resultados = () => {
-  const { nombre, puntajeComida, puntajeIntruso, puntajeTotal, reiniciar } = useJuego();
+    const navigate = useNavigate();
 
+    const {
+        nombreJugador,
+        puntajeComida,
+        puntajeIntruso,
+        puntajeTotal,
+        reiniciarJuego
+    } = useJuego();
+
+    const volverAlInicio = () => {
+    reiniciarJuego();
+    navigate("/");
+   };
   return (
     <Container className="text-center mt-4" style={{ maxWidth: "560px" }}>
-      <h2 className="mb-4">¡Resultados de {nombre}!</h2>
+      <h2 className="mb-4">¡Resultados de {nombreJugador}!</h2>
 
       <ListGroup className="mb-4 fs-5">
         <ListGroup.Item className="d-flex justify-content-between">
@@ -25,12 +38,12 @@ export const Resultados = () => {
       </ListGroup>
 
       <Alert variant="success" className="fs-5">
-        {mensajeFelicitacion(nombre, puntajeTotal)}
+        {mensajeFelicitacion(nombreJugador, puntajeTotal)}
       </Alert>
 
-      <Button variant="primary" size="lg" onClick={reiniciar}>
-        Jugar de nuevo
-      </Button>
+     <Button variant="primary" size="lg" onClick={volverAlInicio}>
+    Jugar de nuevo
+  </Button>
     </Container>
   );
 };

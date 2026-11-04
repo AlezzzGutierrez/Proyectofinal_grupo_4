@@ -2,8 +2,14 @@ import { useState } from "react";
 import { Alert, Button, Container } from "react-bootstrap";
 import { comidaRondas } from "../data/preguntasComida";
 import { PUNTOS_POR_ACIERTO } from "../services/JuegoService";
+import { useNavigate } from "react-router-dom";
+import { useJuego } from "../hooks/useJuego.js";
 
-export const JuegoComida = ({ onJuegoTerminado }) => {
+export const JuegoComida = () => {
+
+  const navigate = useNavigate();
+  const { terminarComida } = useJuego();
+
   const [rondaActual, setRondaActual] = useState(0);
   const [puntaje, setPuntaje] = useState(0);
   const [respuesta, setRespuesta] = useState(null); // { elegida, acerto }
@@ -16,16 +22,18 @@ export const JuegoComida = ({ onJuegoTerminado }) => {
     const acerto = opcion.texto === ronda.correcta;
     if (acerto) setPuntaje((prev) => prev + PUNTOS_POR_ACIERTO);
     setRespuesta({ elegida: opcion.texto, acerto });
+   
   };
 
   const siguienteRonda = () => {
     if (esUltima) {
-      onJuegoTerminado(puntaje);
+        terminarComida(puntaje);
+        navigate("/intruso");
     } else {
-      setRondaActual((prev) => prev + 1);
-      setRespuesta(null);
+        setRondaActual((prev) => prev + 1);
+        setRespuesta(null);
     }
-  };
+};
 
   // Color del botón: la correcta en verde, la equivocada en rojo
   const variante = (opcion) => {
