@@ -1,22 +1,36 @@
-import { useJuego } from "../hooks/useJuego.js";
-import Inicio from "../pages/Inicio.jsx";
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import Login from "../components/Login.jsx";
 import JuegoComida from "../pages/JuegoComida.jsx";
 import JuegoIntruso from "../pages/JuegoIntruso.jsx";
 import Resultados from "../pages/Resultados.jsx";
 
-// Muestra la pantalla que corresponde según el estado del juego.
-// Cada juego avisa con onJuegoTerminado(puntaje) cuando termina.
-const Rutas = () => {
-  const { pantalla, terminarComida, terminarIntruso } = useJuego();
+// Creo el router para manejar las rutas de la aplicación
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
 
-  return (
-    <>
-      {pantalla === "inicio" && <Inicio />}
-      {pantalla === "comida" && <JuegoComida onJuegoTerminado={terminarComida} />}
-      {pantalla === "intruso" && <JuegoIntruso onJuegoTerminado={terminarIntruso} />}
-      {pantalla === "resultados" && <Resultados />}
-    </>
-  );
-};
+        // Defino las rutas hijas que se renderizan dentro del Outlet del componente App
+        children: [
+            {
+                index: true,
+                element: <Login />
+            },
+            {
+                path: "comida",
+                element: <JuegoComida />
+            },
+            {
+                path: "intruso",
+                element: <JuegoIntruso />
+            },
+            {
+                path: "resultados",
+                element: <Resultados />
+            }
+        ]
+    }
+]);
 
-export default Rutas;
+export default router;

@@ -1,16 +1,31 @@
-# React + Vite
+# Nayla Leiva
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Desarrollo de Componentes, Hook de Autenticación y Sincronización de Cambios en "Aventura en la Granja", Barra de Menú y Login
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Actividades realizadas
+- **Creación de componentes y módulos propios
+  * Desarrollo del componente de acceso de usuarios (`Login.jsx`), el formulario principal (`Form.jsx`), la barra de navegación (`Menu.jsx`) y la pantalla de control de errores (`Error.jsx`).
+  * Implementación del hook personalizado de autorización (`useAuthorization.js`) y del servicio de autenticación (`authService.js`) para centralizar la lógica y la persistencia de las sesiones.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Archivos y carpetas creados, modificados y eliminados
 
-## Expanding the ESLint configuration
+- **Nuevos / Creados por mí (A - Verdes):**
+  * `src/components/Login.jsx` y `Form.jsx`: Estructuras de acceso y formularios de la aplicación.
+  * `src/components/Menu.jsx`: Barra superior de navegación.
+  * `src/pages/Error.jsx`: Vista para el manejo de excepciones y rutas no encontradas.
+  * `src/hooks/useAuthorization.js`: Hook para el control y persistencia de sesiones de usuario.
+  * `src/services/authService.js`: Servicio encargado de la lógica y comunicación de autenticación.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Modificados / Sincronizados con el equipo (M - Amarillos):**
+  * `src/pages/Resultados.jsx`, `src/routes/routes.js`, y `src/App.jsx`: Integración de los flujos actualizados y aceptación de los cambios del repositorio compartido.
+
+---
+
+### 3. Uso de IA
+- Utilizada como herramienta de colaboración técnica para:
+  * Guiar en la resolución ordenada de conflictos de fusión (*merge conflicts*) en el control de versiones.
+  * Asistir en la estructuración de la lógica de autenticación y los componentes modulares de React.

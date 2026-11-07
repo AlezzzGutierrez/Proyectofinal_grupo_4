@@ -1,11 +1,17 @@
 import { useContext } from "react";
 import { JuegoContext } from "../contexts/JuegoContext.jsx";
 
-// Atajo para leer el estado del juego desde cualquier pantalla
+// Hook personalizado para acceder a los datos del contexto
 export const useJuego = () => {
-  const contexto = useContext(JuegoContext);
-  if (!contexto) {
-    throw new Error("useJuego debe usarse dentro de <JuegoProvider>");
-  }
-  return contexto;
+
+    // Obtiene los datos que proporciona JuegoContext
+    const contexto = useContext(JuegoContext);
+
+    
+    if (!contexto) {
+        throw new Error("useJuego debe ser usado dentro de un JuegoProvider");
+    }
+
+    // Devuelve los datos y funciones disponibles en el contexto
+    return contexto;
 };

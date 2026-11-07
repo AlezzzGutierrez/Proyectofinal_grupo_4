@@ -1,54 +1,59 @@
 import { createContext, useState } from "react";
 
-// Guarda en un solo lugar: la pantalla actual, el nombre y los puntajes.
-// eslint-disable-next-line react-refresh/only-export-components
+// Creo el contexto para poder compartir los datos entre componentes
 export const JuegoContext = createContext(null);
 
+// Creo el Provider para envolver los componentes que necesitan acceder a los datos del contexto
 export const JuegoProvider = ({ children }) => {
-  const [pantalla, setPantalla] = useState("inicio"); // inicio | comida | intruso | resultados
-  const [nombre, setNombre] = useState("");
-  const [puntajeComida, setPuntajeComida] = useState(0);
-  const [puntajeIntruso, setPuntajeIntruso] = useState(0);
 
-  // Pantalla 1 (Login) -> Pantalla 2 (Juego 1)
-  const comenzar = (nombreIngresado) => {
-    setNombre(nombreIngresado.trim());
-    setPuntajeComida(0);
-    setPuntajeIntruso(0);
-    setPantalla("comida");
-  };
+    // Estados que almacenan los datos del jugador y sus puntajes
+    const [nombreJugador, setNombreJugador] = useState("");
+    const [puntajeComida, setPuntajeComida] = useState(0);
+    const [puntajeIntruso, setPuntajeIntruso] = useState(0);
 
-  // Pantalla 2 -> Pantalla 3 (Juego 2): guarda el puntaje del juego 1
-  const terminarComida = (puntos) => {
-    setPuntajeComida(puntos);
-    setPantalla("intruso");
-  };
+    // Función para comenzar el juego: guarda el nombre ingresado y reinicia los puntajes anteriores
+    const comenzar = (nombreIngresado) => {
+        setNombreJugador(nombreIngresado.trim());
+        setPuntajeComida(0);
+        setPuntajeIntruso(0);
+    };
 
-  // Pantalla 3 -> Pantalla 4 (Resultados): guarda el puntaje del juego 2
-  const terminarIntruso = (puntos) => {
-    setPuntajeIntruso(puntos);
-    setPantalla("resultados");
-  };
+    // Función para finalizar el primer juego: recibe y guarda el puntaje obtenido en comida/animales
+    const terminarComida = (puntos) => {
+        setPuntajeComida(puntos);
+    };
 
-  // Pantalla 4 -> Pantalla 1: "Jugar de nuevo"
-  const reiniciar = () => {
-    setNombre("");
-    setPuntajeComida(0);
-    setPuntajeIntruso(0);
-    setPantalla("inicio");
-  };
+    // Función para finalizar el segundo juego: recibe y guarda el puntaje obtenido en el juego del intruso
+    const terminarIntruso = (puntos) => {
+        setPuntajeIntruso(puntos);
+    };
 
-  const valor = {
-    pantalla,
-    nombre,
-    puntajeComida,
-    puntajeIntruso,
-    puntajeTotal: puntajeComida + puntajeIntruso,
-    comenzar,
-    terminarComida,
-    terminarIntruso,
-    reiniciar,
-  };
+    // Función para reiniciar el juego: limpia el nombre del jugador y ambos puntajes
+    const reiniciarJuego = () => {
+        setNombreJugador("");
+        setPuntajeComida(0);
+        setPuntajeIntruso(0);
+    };
 
-  return <JuegoContext.Provider value={valor}>{children}</JuegoContext.Provider>;
+  
+    const valor = {
+        nombreJugador,
+        puntajeComida,
+        puntajeIntruso,
+
+        
+        puntajeTotal: puntajeComida + puntajeIntruso,
+
+        comenzar,
+        terminarComida,
+        terminarIntruso,
+        reiniciarJuego
+    };
+
+    // Retorno el provider con los datos y funciones compartidos
+    return (
+        <JuegoContext.Provider value={valor}>
+            {children}
+        </JuegoContext.Provider>
+    );
 };
