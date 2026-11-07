@@ -6,7 +6,7 @@ import Resultados from "../pages/Resultados.jsx";
 
 // Muestra la pantalla que corresponde según el estado del juego.
 // Cada juego avisa con onJuegoTerminado(puntaje) cuando termina.
-export default function Rutas() {
+const Rutas = () => {
   const { pantalla, terminarComida, terminarIntruso } = useJuego();
 
   return (
@@ -17,4 +17,6 @@ export default function Rutas() {
       {pantalla === "resultados" && <Resultados />}
     </>
   );
-}
+};
+
+export default Rutas;

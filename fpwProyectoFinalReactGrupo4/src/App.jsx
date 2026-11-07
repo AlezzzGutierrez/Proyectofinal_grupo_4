@@ -1,7 +1,7 @@
 import { JuegoProvider } from "./contexts/JuegoContext.jsx";
 import Rutas from "./routes/routes.jsx";
 
-function App() {
+const App = () => {
   return (
     <JuegoProvider>
       <main className="py-4">
@@ -9,6 +9,6 @@ function App() {
       </main>
     </JuegoProvider>
   );
-}
+};
 
 export default App;
