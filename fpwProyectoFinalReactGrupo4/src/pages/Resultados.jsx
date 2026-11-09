@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Card, CardContent } from "@mui/material";
+import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuthorization } from "../hooks/useAuthorization";
 
@@ -29,52 +29,44 @@ const Resultados = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, p: 2 }}>
-            <Card sx={{ maxWidth: 500, width: '100%', textAlign: 'center', p: 3, boxShadow: 3 }}>
-                <CardContent>
-                    <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#2e7d32', mb: 2 }}>
-                        ¡Resultados Finales!
-                    </Typography>
+        <Container className="mt-4">
+            <Card className="mx-auto text-center shadow" style={{ maxWidth: "500px" }}>
+                <Card.Body className="p-4">
+                    <h2 className="fw-bold text-success mb-3">¡Resultados Finales!</h2>
 
                     {currentUser ? (
-                        <Typography variant="h6" sx={{ mb: 3, color: '#333' }}>
+                        <p className="fs-5 mb-4">
                             Participante: <strong>{currentUser.name}</strong>
-                        </Typography>
+                        </p>
                     ) : (
-                        <Typography variant="body1" sx={{ mb: 3, color: 'error.main' }}>
+                        <p className="text-danger mb-4">
                             No hay una sesión activa registrada.
-                        </Typography>
+                        </p>
                     )}
 
-                    <Box sx={{ textAlign: 'left', bgcolor: '#f1f8e9', p: 2.5, borderRadius: 2, mb: 3 }}>
-                        <Typography variant="body1" sx={{ mb: 1.5, fontWeight: 'medium' }}>
+                    <div className="text-start p-3 mb-4 rounded" style={{ backgroundColor: "#f1f8e9" }}>
+                        <p className="mb-2">
                             ¡Hora de Comer!: <strong>{gameScore1} pts</strong>
-                        </Typography>
-                        <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
+                        </p>
+                        <p className="mb-0">
                             El intruso de la Granja: <strong>{gameScore2} pts</strong>
-                        </Typography>
-                    </Box>
+                        </p>
+                    </div>
 
-                    <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#1b5e20', mb: 2 }}>
+                    <h3 className="fw-bold text-success mb-3">
                         Puntaje Total: {totalScore} pts
-                    </Typography>
+                    </h3>
 
-                    <Typography variant="body1" sx={{ fontStyle: 'italic', mb: 4, color: '#555' }}>
+                    <p className="fst-italic text-secondary mb-4">
                         {getCongratulationMessage(totalScore)}
-                    </Typography>
+                    </p>
 
-                    <Button 
-                        variant="contained" 
-                        color="success" 
-                        size="large"
-                        fullWidth
-                        onClick={handlePlayAgain}
-                    >
+                    <Button variant="success" size="lg" className="w-100" onClick={handlePlayAgain}>
                         Jugar de nuevo
                     </Button>
-                </CardContent>
+                </Card.Body>
             </Card>
-        </Box>
+        </Container>
     );
 };
 
