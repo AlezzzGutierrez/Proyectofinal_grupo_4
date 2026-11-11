@@ -6,6 +6,7 @@ import Inicio from "../pages/Inicio.jsx";
 import JuegoComida from "../pages/JuegoComida.jsx";
 import JuegoIntruso from "../pages/JuegoIntruso.jsx";
 import Resultados from "../pages/Resultados.jsx";
+import PanelDocente from "../pages/PanelDocente.jsx";
 
 // Creo el router para manejar las rutas de la aplicación
 const router = createBrowserRouter([
@@ -41,6 +42,20 @@ const router = createBrowserRouter([
             {
                 path: "resultados",
                 element: <Resultados />
+            },
+            {
+                // Acceso para docentes
+                path: "docente",
+                element: <LoginDocente />
+            },
+            {
+                // Panel con los resultados: solo entra un docente con sesión iniciada
+                path: "panel",
+                element: (
+                    <RutaDocente>
+                        <PanelDocente />
+                    </RutaDocente>
+                )
             }
         ]
     }
