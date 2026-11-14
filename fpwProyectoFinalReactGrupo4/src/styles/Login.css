@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Mochiy+Pop+One&display=swap');
+
+body {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background-color: #FFFDF0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+/* Centra todo el bloque de las dos tarjetas en el medio de la pantalla */
+.login-container {
+    min-height: calc(100vh - 70px); /* Descuenta el alto de la barra azul superior */
+    max-width: 1250px;              /* Limita el ancho total para que queden centradas */
+    margin: 0 auto;                 /* Centra el contenedor en la pantalla */
+    display: flex;
+    align-items: center;
+}
+
+.login-container > .row {
+    width: 100%;
+    justify-content: center;
+}
+
+.login-presentacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px; /* Controla la separación entre tarjetas */
+}
+
+.presentacion-contenido {
+    background-color: #FFFAB5;
+    color: #65402C;
+    width: 100%;
+    max-width: 580px; /* Evita que se estire demasiado hacia la izquierda */
+    min-height: 620px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-formulario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px; /* Controla la separación entre tarjetas */
+}
+
+.presentacion-texto {
+    position: relative;
+    z-index: 2;
+}
+
+/* Misma fuente que el título "Iniciar Sesión" del formulario */
+.titulo-bienvenida {
+    font-family: 'Mochiy Pop One', sans-serif !important;
+}
+
+/* Nubes blancas posicionadas abajo sin alterar el centrado */
+.nubes-inferiores {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nubes-svg {
+    width: 100%;
+    height: 95px;
+    display: block;
+}
+
+/* Tarjeta verde con detalles de nubecitas en verde claro */
+.login-card {
+    background-color: #87D758 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M35 55h42a13 13 0 0 0 0-26 17 17 0 0 0-32-5 14 14 0 0 0-10 31z' fill='%239FE973' opacity='0.65'/%3E%3Cpath d='M110 135h48a15 15 0 0 0 0-30 19 19 0 0 0-36-6 15 15 0 0 0-12 36z' fill='%239FE973' opacity='0.55'/%3E%3Cpath d='M18 145h30a9 9 0 0 0 0-18 12 12 0 0 0-22-4 10 10 0 0 0-8 22z' fill='%239FE973' opacity='0.45'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+
+    width: 440px;
+    max-width: 90%;
+    min-height: 650px;
+
+    border: 0 !important;
+    border-radius: 45px !important;
+    --bs-card-border-radius: 45px;
+
+    padding: 40px 35px !important;
+    box-shadow: 0 16px 32px rgba(101, 64, 44, 0.12);
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 18px;
+}
+
+/* Título en amarillo lima estilo imagen */
+.titulo-login {
+    font-size: 28px;
+    color: #E8FF45;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Etiquetas en amarillo lima */
+.login-card .form-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E8FF45;
+    margin-bottom: 4px;
+}
+
+/* Inputs con estilo línea inferior blanca */
+.login-card .input-linea {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.85) !important;
+    border-radius: 0 !important;
+    color: #FFFFFF !important;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 4px;
+    box-shadow: none !important;
+}
+
+.login-card .input-linea::placeholder {
+    color: rgba(255, 255, 255, 0.72) !important;
+    font-weight: 500;
+}
+
+.login-card .input-linea:focus {
+    border-bottom: 2px solid #E8FF45 !important;
+    box-shadow: none !important;
+}
+
+/* Select de rol adaptado al diseño */
+.login-card .select-linea {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+    border: 2px solid rgba(255, 255, 255, 0.85) !important;
+    border-radius: 16px !important;
+    color: #FFFFFF !important;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 10px 14px;
+    box-shadow: none !important;
+}
+
+.login-card .select-linea option {
+    background-color: #6BBF3F;
+    color: #FFFFFF;
+}
+
+/* Tu botón amarillo principal */
+.boton-ingresar {
+    background-color: #FFF101 !important;
+    color: #A27605 !important;
+    width: 100%;
+
+    border: none !important;
+    border-radius: 30px !important;
+
+    font-weight: 800;
+    font-size: 18px;
+    padding: 12px 45px;
+
+    box-shadow: 0 5px 0 #C9A900;
+    transition: all 0.15s ease;
+}
+
+.boton-ingresar:hover {
+    background-color: #F5E600 !important;
+    color: #A27605 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #C9A900;
+}
+
+.boton-ingresar:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #C9A900;
+}
+
+/* Enlace blanco limpio para alternar modo */
+.boton-alternar {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    transition: color 0.15s ease;
+}
+
+.boton-alternar:hover {
+    color: #E8FF45 !important;
+    text-decoration: underline !important;
+}
