@@ -3,13 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Menu = () => {
     const navigate = useNavigate();
-
-    // Hace que el menú se vuelva a dibujar cada vez que cambia la ruta
-    useLocation();
+    useLocation(); // Fuerza el re-render al cambiar de ruta
 
     const storedUser = localStorage.getItem("currentUser");
     const sessionUser = storedUser ? JSON.parse(storedUser) : null;
+    
     const esDocente = sessionUser?.role === "docente";
+    const esNino = sessionUser?.role === "nino";
 
     const handleLogout = () => {
         localStorage.removeItem("currentUser");
@@ -25,6 +25,8 @@ const Menu = () => {
 
                 <Navbar.Collapse id="menu-principal">
                     <Nav className="ms-auto gap-2 align-items-lg-center">
+                        
+                        {/* BOTÓN DE LOGIN / LOGOUT */}
                         {sessionUser ? (
                             <Button variant="danger" onClick={handleLogout}>
                                 Cerrar Sesión
@@ -35,27 +37,28 @@ const Menu = () => {
                             </Button>
                         )}
 
-                        {/* El acceso para docentes se ve siempre, salvo que ya haya entrado uno */}
+                        {/* BOTÓN DE DOCENTES (solo si no entró un docente) */}
                         {!esDocente && (
-                            <Button as={Link} to="/docente" variant="outline-light">
+                            <Button as={Link} to="/login-docente" variant="outline-light">
                                 Docentes
                             </Button>
                         )}
 
-                        {esDocente ? (
+                        {/* SI ES DOCENTE: Ve el Panel */}
+                        {esDocente && (
                             <Button as={Link} to="/panel" variant="outline-light">
-                                Panel docente
+                                Panel Docente
                             </Button>
-                        ) : (
+                        )}
+
+                        {/* SI ES NIÑO: Ve los Juegos (sin el de resultados) */}
+                        {esNino && (
                             <>
                                 <Button as={Link} to="/comida" variant="outline-light">
                                     ¡Hora de Comer!
                                 </Button>
                                 <Button as={Link} to="/intruso" variant="outline-light">
-                                    El intruso de la Granja
-                                </Button>
-                                <Button as={Link} to="/resultados" variant="outline-light">
-                                    Perfil y Resultados
+                                    El Intruso de la Granja
                                 </Button>
                             </>
                         )}

@@ -1,41 +1,43 @@
-import { DOCENTE } from "../data/docentes";
+const CLAVE_USUARIOS = "usuariosRegistrados";
 
-const authService = (() => {
-    let idCount = 1;
+const obtenerUsuarios = () => {
+    const guardados = localStorage.getItem(CLAVE_USUARIOS);
+    return guardados ? JSON.parse(guardados) : [];
+};
 
-    // Acceso de los niños: solo necesitan un nombre
-    const login = async (playerName) => {
-        if (!playerName || playerName.trim() === "") {
-            return null;
-        }
+const guardarUsuarios = (usuarios) => {
+    localStorage.setItem(CLAVE_USUARIOS, JSON.stringify(usuarios));
+};
 
-        const user = {
-            id: idCount,
-            name: playerName.trim(),
-            role: "nino"
+const authService = {
+    registrar: async (nombre, clave, rol) => {
+        const usuarios = obtenerUsuarios();
+        const existe = usuarios.find(u => u.nombre.toLowerCase() === nombre.trim().toLowerCase());
+        if (existe) return { error: "Ese nombre ya está registrado." };
+
+        const nuevoUsuario = {
+            id: Date.now(),
+            nombre: nombre.trim(),
+            clave: clave, 
+            rol: rol // <--- ACÁ SE GUARDA EL ROL
         };
+        usuarios.push(nuevoUsuario);
+        guardarUsuarios(usuarios);
 
-        idCount++;
-        return user;
-    };
+        const { clave: _, ...usuarioSeguro } = nuevoUsuario;
+        return { usuario: usuarioSeguro };
+    },
 
-    // Acceso del docente: usuario y contraseña
-    const loginDocente = async (usuario, clave) => {
-        if (usuario.trim() !== DOCENTE.usuario || clave !== DOCENTE.clave) {
-            return null;
-        }
+    login: async (nombre, clave) => {
+        const usuarios = obtenerUsuarios();
+        const usuarioEncontrado = usuarios.find(
+            u => u.nombre.toLowerCase() === nombre.trim().toLowerCase() && u.clave === clave
+        );
+        if (!usuarioEncontrado) return null;
 
-        return {
-            id: 0,
-            name: "Docente",
-            role: "docente"
-        };
-    };
-
-    return ({
-        login,
-        loginDocente
-    });
-})();
+        const { clave: _, ...usuarioSeguro } = usuarioEncontrado;
+        return usuarioSeguro;
+    }
+};
 
 export default authService;

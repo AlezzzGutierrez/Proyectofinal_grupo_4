@@ -1,55 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import Login from "../components/Login.jsx";
+import App from "../App.jsx"; 
 import SeleccionUsuario from "../pages/SeleccionUsuario.jsx";
-import Inicio from "../pages/Inicio.jsx";
+import LoginUnico from "../components/LoginUnico.jsx"; 
 import JuegoComida from "../pages/JuegoComida.jsx";
 import JuegoIntruso from "../pages/JuegoIntruso.jsx";
 import Resultados from "../pages/Resultados.jsx";
 import PanelDocente from "../pages/PanelDocente.jsx";
+import RutaDocente from "../components/RutaDocente.jsx"; 
 
-// Creo el router para manejar las rutas de la aplicación
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-
-        // Defino las rutas hijas que se renderizan dentro del Outlet del componente App
         children: [
+            { index: true, element: <SeleccionUsuario /> },
+            { path: "login-nino", element: <LoginUnico /> },
+            { path: "login-docente", element: <LoginUnico /> },
+            { path: "comida", element: <JuegoComida /> },
+            { path: "intruso", element: <JuegoIntruso /> },
+            { path: "resultados", element: <Resultados /> },
             {
-                // Pantalla inicial: el usuario elige si es niño o docente
-                index: true,
-                element: <SeleccionUsuario />
-            },
-            {
-                // TEMPORAL: reemplazar por el componente LoginNino cuando esté listo
-                path: "login-nino",
-                element: <Inicio />
-            },
-            {
-                // TEMPORAL: reemplazar por el componente LoginDocente cuando esté listo
-                path: "login-docente",
-                element: <Login />
-            },
-            {
-                path: "comida",
-                element: <JuegoComida />
-            },
-            {
-                path: "intruso",
-                element: <JuegoIntruso />
-            },
-            {
-                path: "resultados",
-                element: <Resultados />
-            },
-            {
-                // Acceso para docentes
-                path: "docente",
-                element: <LoginDocente />
-            },
-            {
-                // Panel con los resultados: solo entra un docente con sesión iniciada
                 path: "panel",
                 element: (
                     <RutaDocente>
@@ -62,51 +32,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-
-/**import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import Login from "../components/Login.jsx";
-import SeleccionUsuario from "../pages/SeleccionUsuario.jsx";
-import Inicio from "../pages/Inicio.jsx";
-import JuegoComida from "../pages/JuegoComida.jsx";
-import JuegoIntruso from "../pages/JuegoIntruso.jsx";
-import Resultados from "../pages/Resultados.jsx";
-
-// Creo el router para manejar las rutas de la aplicación
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-
-        // Defino las rutas hijas que se renderizan dentro del Outlet del componente App
-        children: [
-            {
-            
-                index: true,
-                element: <SeleccionUsuario />
-            },
-            {
-                path: "login",
-                element: <Login />
-            },
-            {
-                path: "inicio",
-                element: <Inicio />
-            },
-            {
-                path: "comida",
-                element: <JuegoComida />
-            },
-            {
-                path: "intruso",
-                element: <JuegoIntruso />
-            },
-            {
-                path: "resultados",
-                element: <Resultados />
-            }
-        ]
-    }
-]);
-
-export default router; **/

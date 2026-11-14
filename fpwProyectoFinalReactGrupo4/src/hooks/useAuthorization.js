@@ -1,24 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthorizationContext } from "../contexts/AuthorizationContext";
 
 export const useAuthorization = () => {
-    const [sessionUser, setSessionUser] = useState(() => {
-        const storedUser = localStorage.getItem("currentUser");
-        return storedUser ? JSON.parse(storedUser) : null;
-    });
-
-    const saveSession = (user) => {
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        setSessionUser(user);
-    };
-
-    const clearSession = () => {
-        localStorage.removeItem("currentUser");
-        setSessionUser(null);
-    };
-
-    return {
-        sessionUser,
-        saveSession,
-        clearSession
-    };
+    const context = useContext(AuthorizationContext);
+    if (!context) {
+        throw new Error("useAuthorization debe usarse dentro de un AuthorizationProvider");
+    }
+    return context;
 };
