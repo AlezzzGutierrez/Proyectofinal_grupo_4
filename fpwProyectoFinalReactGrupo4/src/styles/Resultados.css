@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Mochiy+Pop+One&display=swap');
+
+.resultados-wrapper {
+    min-height: calc(100vh - 65px);
+    background-color: #FFFDF0;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+/* Tarjeta verde con patrón de nubecitas en verde claro igual al Login */
+.resultados-card {
+    background-color: #87D758 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M35 55h42a13 13 0 0 0 0-26 17 17 0 0 0-32-5 14 14 0 0 0-10 31z' fill='%239FE973' opacity='0.65'/%3E%3Cpath d='M110 135h48a15 15 0 0 0 0-30 19 19 0 0 0-36-6 15 15 0 0 0-12 36z' fill='%239FE973' opacity='0.55'/%3E%3Cpath d='M18 145h30a9 9 0 0 0 0-18 12 12 0 0 0-22-4 10 10 0 0 0-8 22z' fill='%239FE973' opacity='0.45'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+
+    width: 100%;
+    max-width: 500px;
+    border: 0 !important;
+    border-radius: 45px !important;
+    --bs-card-border-radius: 45px;
+    box-shadow: 0 18px 35px rgba(101, 64, 44, 0.14);
+    overflow: hidden;
+}
+
+.resultados-body {
+    padding: 40px 36px !important;
+}
+
+/* Ícono de trofeo superior */
+.trofeo-badge {
+    width: 72px;
+    height: 72px;
+    background-color: #FFFAB5;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin-bottom: 14px;
+    box-shadow: 0 6px 0 rgba(101, 64, 44, 0.12);
+}
+
+/* Título principal en amarillo lima */
+.titulo-resultados {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 28px;
+    color: #E8FF45;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.participante-texto {
+    color: #FFFFFF;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.alerta-sesion {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+/* Caja interna de puntajes por juego en amarillo crema #FFFAB5 */
+.desglose-caja {
+    background-color: #FFFAB5;
+    color: #65402C;
+    padding: 18px 22px;
+    border-radius: 26px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 6px 14px rgba(101, 64, 44, 0.08);
+}
+
+.desglose-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.puntaje-pill {
+    background-color: #FFFFFF;
+    color: #58B82A;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 16px;
+}
+
+/* Puntaje total */
+.puntaje-total {
+    font-family: 'Mochiy Pop One', sans-serif;
+    color: #E8FF45;
+    font-size: 26px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.mensaje-felicitacion {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+/* Botón amarillo con relieve 3D igual al del Login */
+.boton-jugar-nuevo {
+    background-color: #FFF101 !important;
+    color: #A27605 !important;
+    border: none !important;
+    border-radius: 30px !important;
+    font-weight: 800 !important;
+    font-size: 19px !important;
+    padding: 13px 30px !important;
+    box-shadow: 0 5px 0 #C9A900;
+    transition: all 0.15s ease;
+}
+
+.boton-jugar-nuevo:hover {
+    background-color: #F5E600 !important;
+    color: #A27605 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 #C9A900;
+}
+
+.boton-jugar-nuevo:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #C9A900;
+}
