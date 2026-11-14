@@ -41,9 +41,16 @@ export const JuegoProvider = ({ children }) => {
         setPuntajeIntruso(puntos);
         localStorage.setItem(CLAVE_PUNTAJE_INTRUSO, puntos);
 
+        // BUSCAMOS EL NOMBRE EN LA SESIÓN ACTUAL (LOGIN ÚNICO)
+        const storedUser = localStorage.getItem("currentUser");
+        const usuario = storedUser ? JSON.parse(storedUser) : null;
+        
+        // Usamos el nombre del estado, o el de la sesión, o "Sin nombre" como respaldo
+        const nombreFinal = nombreJugador || usuario?.nombre || usuario?.name || "Sin nombre";
+
         // Guarda la partida completa para que el docente la vea en su panel
         resultadosService.guardar({
-            nombre: nombreJugador,
+            nombre: nombreFinal,
             puntajeComida: Number(localStorage.getItem(CLAVE_PUNTAJE_COMIDA)) || 0,
             puntajeIntruso: puntos
         });
@@ -57,25 +64,21 @@ export const JuegoProvider = ({ children }) => {
         borrarPuntajesGuardados();
     };
 
-  
     const valor = {
         nombreJugador,
         puntajeComida,
         puntajeIntruso,
-
-        
         puntajeTotal: puntajeComida + puntajeIntruso,
-
         comenzar,
         terminarComida,
         terminarIntruso,
         reiniciarJuego
     };
 
-    // Retorno el provider con los datos y funciones compartidos
+    // Retorno el provider(estudiar) con los datos y funciones compartidos
     return (
         <JuegoContext.Provider value={valor}>
             {children}
         </JuegoContext.Provider>
     );
-};
+};   //verificar
