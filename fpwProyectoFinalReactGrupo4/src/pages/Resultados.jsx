@@ -1,6 +1,7 @@
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuthorization } from "../hooks/useAuthorization";
+import "../styles/Resultados.css";
 
 const Resultados = () => {
     const navigate = useNavigate();
@@ -24,49 +25,60 @@ const Resultados = () => {
     };
 
     const handlePlayAgain = () => {
-        clearSession(); 
-        navigate("/");  
+        clearSession();
+        navigate("/");
     };
 
     return (
-        <Container className="mt-4">
-            <Card className="mx-auto text-center shadow" style={{ maxWidth: "500px" }}>
-                <Card.Body className="p-4">
-                    <h2 className="fw-bold text-success mb-3">¡Resultados Finales!</h2>
+        <div className="resultados-wrapper">
+            <Container className="d-flex justify-content-center align-items-center py-4">
+                <Card className="resultados-card text-center">
+                    <Card.Body className="resultados-body">
+                        <div className="trofeo-badge" aria-hidden="true">
+                            🏆
+                        </div>
 
-                    {currentUser ? (
-                        <p className="fs-5 mb-4">
-                            Participante: <strong>{currentUser.name}</strong>
+                        <h2 className="titulo-resultados mb-3">¡Resultados Finales!</h2>
+
+                        {currentUser ? (
+                            <p className="participante-texto mb-4">
+                                Participante: <strong>{currentUser.name}</strong>
+                            </p>
+                        ) : (
+                            <p className="alerta-sesion mb-4">
+                                No hay una sesión activa registrada.
+                            </p>
+                        )}
+
+                        <div className="desglose-caja text-start mb-4">
+                            <div className="desglose-fila mb-2">
+                                <span>¡Hora de Comer!:</span>
+                                <span className="puntaje-pill">{gameScore1} pts</span>
+                            </div>
+                            <div className="desglose-fila mb-0">
+                                <span>El intruso de la Granja:</span>
+                                <span className="puntaje-pill">{gameScore2} pts</span>
+                            </div>
+                        </div>
+
+                        <h3 className="puntaje-total mb-3">
+                            Puntaje Total: {totalScore} pts
+                        </h3>
+
+                        <p className="mensaje-felicitacion mb-4">
+                            {getCongratulationMessage(totalScore)}
                         </p>
-                    ) : (
-                        <p className="text-danger mb-4">
-                            No hay una sesión activa registrada.
-                        </p>
-                    )}
 
-                    <div className="text-start p-3 mb-4 rounded" style={{ backgroundColor: "#f1f8e9" }}>
-                        <p className="mb-2">
-                            ¡Hora de Comer!: <strong>{gameScore1} pts</strong>
-                        </p>
-                        <p className="mb-0">
-                            El intruso de la Granja: <strong>{gameScore2} pts</strong>
-                        </p>
-                    </div>
-
-                    <h3 className="fw-bold text-success mb-3">
-                        Puntaje Total: {totalScore} pts
-                    </h3>
-
-                    <p className="fst-italic text-secondary mb-4">
-                        {getCongratulationMessage(totalScore)}
-                    </p>
-
-                    <Button variant="success" size="lg" className="w-100" onClick={handlePlayAgain}>
-                        Jugar de nuevo
-                    </Button>
-                </Card.Body>
-            </Card>
-        </Container>
+                        <Button
+                            className="boton-jugar-nuevo w-100"
+                            onClick={handlePlayAgain}
+                        >
+                            Jugar de nuevo
+                        </Button>
+                    </Card.Body>
+                </Card>
+            </Container>
+        </div>
     );
 };
 
