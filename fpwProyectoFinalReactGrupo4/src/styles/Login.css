@@ -9,11 +9,10 @@ h1, h2, h3, h4 {
     font-family: 'Mochiy Pop One', sans-serif;
 }
 
-/* Centra todo el bloque de las dos tarjetas en el medio de la pantalla */
 .login-container {
-    min-height: calc(100vh - 70px); /* Descuenta el alto de la barra azul superior */
-    max-width: 1250px;              /* Limita el ancho total para que queden centradas */
-    margin: 0 auto;                 /* Centra el contenedor en la pantalla */
+    min-height: calc(100vh - 70px);
+    max-width: 1250px;             
+    margin: 0 auto;                 
     display: flex;
     align-items: center;
 }
@@ -27,14 +26,14 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 25px; /* Controla la separación entre tarjetas */
+    padding: 15px 25px; 
 }
 
 .presentacion-contenido {
     background-color: #FFFAB5;
     color: #65402C;
     width: 100%;
-    max-width: 580px; /* Evita que se estire demasiado hacia la izquierda */
+    max-width: 580px; 
     min-height: 620px;
     position: relative;
     overflow: hidden;
@@ -50,7 +49,7 @@ h1, h2, h3, h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 25px; /* Controla la separación entre tarjetas */
+    padding: 15px 25px;
 }
 
 .presentacion-texto {
@@ -58,12 +57,10 @@ h1, h2, h3, h4 {
     z-index: 2;
 }
 
-/* Misma fuente que el título "Iniciar Sesión" del formulario */
 .titulo-bienvenida {
     font-family: 'Mochiy Pop One', sans-serif !important;
 }
 
-/* Nubes blancas posicionadas abajo sin alterar el centrado */
 .nubes-inferiores {
     position: absolute;
     bottom: 0;
@@ -80,7 +77,7 @@ h1, h2, h3, h4 {
     display: block;
 }
 
-/* Tarjeta verde con detalles de nubecitas en verde claro */
+
 .login-card {
     background-color: #87D758 !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M35 55h42a13 13 0 0 0 0-26 17 17 0 0 0-32-5 14 14 0 0 0-10 31z' fill='%239FE973' opacity='0.65'/%3E%3Cpath d='M110 135h48a15 15 0 0 0 0-30 19 19 0 0 0-36-6 15 15 0 0 0-12 36z' fill='%239FE973' opacity='0.55'/%3E%3Cpath d='M18 145h30a9 9 0 0 0 0-18 12 12 0 0 0-22-4 10 10 0 0 0-8 22z' fill='%239FE973' opacity='0.45'/%3E%3C/svg%3E");
@@ -106,14 +103,12 @@ h1, h2, h3, h4 {
     font-size: 18px;
 }
 
-/* Título en amarillo lima estilo imagen */
 .titulo-login {
     font-size: 28px;
     color: #E8FF45;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* Etiquetas en amarillo lima */
 .login-card .form-label {
     font-size: 18px;
     font-weight: 700;
@@ -121,7 +116,6 @@ h1, h2, h3, h4 {
     margin-bottom: 4px;
 }
 
-/* Inputs con estilo línea inferior blanca */
 .login-card .input-linea {
     background-color: transparent !important;
     border: none !important;
@@ -144,7 +138,6 @@ h1, h2, h3, h4 {
     box-shadow: none !important;
 }
 
-/* Select de rol adaptado al diseño */
 .login-card .select-linea {
     background-color: rgba(255, 255, 255, 0.22) !important;
     border: 2px solid rgba(255, 255, 255, 0.85) !important;
@@ -161,7 +154,6 @@ h1, h2, h3, h4 {
     color: #FFFFFF;
 }
 
-/* Tu botón amarillo principal */
 .boton-ingresar {
     background-color: #FFF101 !important;
     color: #A27605 !important;
@@ -192,7 +184,6 @@ h1, h2, h3, h4 {
     box-shadow: 0 2px 0 #C9A900;
 }
 
-/* Enlace blanco limpio para alternar modo */
 .boton-alternar {
     color: #FFFFFF !important;
     font-weight: 700 !important;

@@ -4,7 +4,7 @@ import "../styles/Menu.css";
 
 const Menu = () => {
     const navigate = useNavigate();
-    useLocation(); // Fuerza el re-render al cambiar de ruta
+    useLocation(); 
 
     const storedUser = localStorage.getItem("currentUser");
     const sessionUser = storedUser ? JSON.parse(storedUser) : null;
@@ -29,7 +29,6 @@ const Menu = () => {
                 <Navbar.Collapse id="menu-principal">
                     <Nav className="ms-auto gap-2 align-items-lg-center mt-2 mt-lg-0">
 
-                        {/* BOTÓN DE LOGIN / LOGOUT */}
                         {sessionUser ? (
                             <Button
                                 className="btn-menu-pill btn-menu-salir"
@@ -47,7 +46,6 @@ const Menu = () => {
                             </Button>
                         )}
 
-                        {/* BOTÓN DE DOCENTES (solo si no entró un docente) */}
                         {!esDocente && (
                             <Button
                                 as={Link}
@@ -58,7 +56,7 @@ const Menu = () => {
                             </Button>
                         )}
 
-                        {/* SI ES DOCENTE: Ve el Panel */}
+                       
                         {esDocente && (
                             <Button
                                 as={Link}
@@ -69,7 +67,7 @@ const Menu = () => {
                             </Button>
                         )}
 
-                        {/* SI ES NIÑO: Ve los Juegos */}
+                
                         {esNino && (
                             <>
                                 <Button

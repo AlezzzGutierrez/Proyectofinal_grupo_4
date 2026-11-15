@@ -12,7 +12,7 @@ export const JuegoComida = () => {
 
   const [rondaActual, setRondaActual] = useState(0);
   const [puntaje, setPuntaje] = useState(0);
-  const [respuesta, setRespuesta] = useState(null); // { elegida, acerto }
+  const [respuesta, setRespuesta] = useState(null); 
 
   const ronda = comidaRondas[rondaActual];
   const esUltima = rondaActual + 1 === comidaRondas.length;
@@ -50,10 +50,9 @@ export const JuegoComida = () => {
     <div className="juego-comida-wrapper">
       <Container fluid className="d-flex justify-content-center align-items-center py-4">
         <div className="juego-card">
-          {/* Título del juego */}
+         
           <h2 className="juego-titulo">Juego 1: ¡Hora de Comer!</h2>
 
-          {/* Barra superior estilo imagen 2: Avatar + Barra de progreso + Puntaje */}
           <div className="barra-superior">
             <div className="progreso-contenedor">
               <div className="avatar-ronda">
@@ -79,12 +78,10 @@ export const JuegoComida = () => {
             </div>
           </div>
 
-          {/* Consigna en recuadro rectangular ovalado amarillo #FFFAB5 */}
           <div className="consigna-pill">
             Dale a {ronda.articulo.toLowerCase()} {ronda.animal.toLowerCase()} su comida favorita.
           </div>
 
-          {/* Zona central del animal protagonista */}
           <div className="animal-protagonista-zona">
             <div className="animal-circulo-fondo">
               <img
@@ -95,7 +92,6 @@ export const JuegoComida = () => {
             </div>
           </div>
 
-          {/* Feedback tras elegir opción */}
           {respuesta && (
             <div
               className={`feedback-pill ${respuesta.acerto ? "feedback-ok" : "feedback-error"
@@ -105,7 +101,6 @@ export const JuegoComida = () => {
             </div>
           )}
 
-          {/* Bandeja inferior estilo imagen 2 con botones blancos cuadrados */}
           <div className="bandeja-opciones">
             {ronda.opciones.map((opcion) => (
               <button
@@ -123,7 +118,6 @@ export const JuegoComida = () => {
             ))}
           </div>
 
-          {/* Botón para avanzar de ronda */}
           {respuesta && (
             <div className="mt-4">
               <Button className="boton-siguiente" onClick={siguienteRonda}>

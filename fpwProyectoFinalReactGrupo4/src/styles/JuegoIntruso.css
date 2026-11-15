@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-/* Tarjeta principal blanca redondeada ampliada y proporcionada */
+
 .juego-card {
   background-color: #FFFFFF;
   width: 95%;
@@ -31,7 +31,7 @@
   margin-bottom: 18px;
 }
 
-/* ================= BARRA SUPERIOR ================= */
+
 .barra-superior {
   display: flex;
   align-items: center;
@@ -98,7 +98,6 @@
   white-space: nowrap;
 }
 
-/* ================= CONSIGNA AMARILLA OVALADA ================= */
 .consigna-pill {
   background-color: #FFFAB5;
   color: #65402C;
@@ -113,7 +112,6 @@
   margin-bottom: 18px;
 }
 
-/* ================= BANDEJA DE ANIMALES ================= */
 .bandeja-opciones {
   background-color: #FFF3B0;
   padding: 22px 26px;
@@ -131,7 +129,6 @@
   gap: 12px;
 }
 
-/* Ícono redondo de la imagen arriba del botón */
 .icono-redondo-animal {
   width: 130px;
   height: 130px;
@@ -163,7 +160,6 @@
   line-height: 1;
 }
 
-/* Botón blanco con el nombre del animal debajo (compacto y proporcionado) */
 .boton-ficha-animal {
   background-color: #FFFFFF;
   color: #65402C;
@@ -208,7 +204,6 @@
   cursor: default;
 }
 
-/* ================= FEEDBACK ================= */
 .feedback-pill {
   font-weight: 800;
   font-size: 18px;
@@ -229,7 +224,6 @@
   color: #C92A2A;
 }
 
-/* ================= BOTÓN SIGUIENTE ================= */
 .boton-siguiente {
   background-color: #87D758 !important;
   color: #FFFFFF !important;

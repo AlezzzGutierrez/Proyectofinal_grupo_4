@@ -7,7 +7,7 @@
   background-size: 180px 90px;
 
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  padding: 24px 0 !important; /* Barra más alta y espaciosa */
+  padding: 24px 0 !important; 
   box-shadow: 0 5px 15px rgba(101, 64, 44, 0.08);
 }
 
@@ -21,11 +21,10 @@
   letter-spacing: 0.6px;
   line-height: 1.1;
   margin-left: 0 !important;
-  padding: 10px 18px !important; /* Más padding alrededor del título */
+  padding: 10px 18px !important; 
 text-shadow: 0 2px 0 #7eb5da;
 }
 
-/* Botones redonditos tipo píldora */
 .btn-menu-pill {
   border-radius: 999px !important;
   font-weight: 800 !important;
@@ -43,7 +42,6 @@ text-shadow: 0 2px 0 #7eb5da;
   transform: translateY(2px);
 }
 
-/* Botón blanco para navegación general */
 .btn-menu-blanco {
   background-color: #FFFFFF !important;
   color: #2B5978 !important;
@@ -54,7 +52,6 @@ text-shadow: 0 2px 0 #7eb5da;
   background-color: #F4FBFF !important;
 }
 
-/* Botón amarillo para los juegos */
 .btn-menu-amarillo {
   background-color: #FFF101 !important;
   color: #A27605 !important;
@@ -65,7 +62,6 @@ text-shadow: 0 2px 0 #7eb5da;
   background-color: #F5E600 !important;
 }
 
-/* Botón rojo coral suave para Cerrar Sesión */
 .btn-menu-salir {
   background-color: #FF6B6B !important;
   color: #FFFFFF !important;

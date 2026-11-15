@@ -4,11 +4,8 @@ import Menu from "./components/Menu.jsx";
 import MusicaFondo from "./components/MusicaFondo";
 const App = () => {
     return (
-        // Envuelvo los componentes que necesitan acceder a los datos compartidos con el Provider
+    
         <JuegoProvider>
-
-            {/* El Outlet es el lugar donde se renderizan
-                los componentes correspondientes a las rutas hijas */}
             <main className="pb-4">
                 <Menu />
                 <Outlet />

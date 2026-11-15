@@ -11,8 +11,8 @@ const LoginUnico = () => {
     const esDocente = location.pathname === "/login-docente";
     const [nombre, setNombre] = useState("");
     const [clave, setClave] = useState("");
-    const [rol, setRol] = useState("nino"); // "nino" o "docente"
-    const [esRegistro, setEsRegistro] = useState(false); // Controla si estamos creando cuenta o iniciando sesión
+    const [rol, setRol] = useState("nino");
+    const [esRegistro, setEsRegistro] = useState(false);
 
     const [error, setError] = useState("");
     const { saveSession } = useAuthorization();
@@ -28,18 +28,18 @@ const LoginUnico = () => {
         }
 
         if (esRegistro) {
-            // --- MODO REGISTRO ---
+
             const resultado = await authService.registrar(nombre, clave, rol);
 
             if (resultado.error) {
                 setError(resultado.error);
             } else {
-                // Si se registró bien, iniciamos sesión automáticamente
+
                 saveSession(resultado.usuario);
                 navigate(resultado.usuario.rol === "docente" ? "/panel" : "/comida");
             }
         } else {
-            // --- MODO INICIO DE SESIÓN ---
+
             const usuario = await authService.login(nombre, clave);
 
             if (usuario) {
@@ -71,7 +71,7 @@ const LoginUnico = () => {
                             </p>
                         </div>
 
-                        {/* Nubes blancas sólidas en la parte inferior */}
+
                         <div className="nubes-inferiores">
                             <svg viewBox="0 0 800 110" preserveAspectRatio="none" className="nubes-svg">
                                 <path
@@ -83,7 +83,7 @@ const LoginUnico = () => {
                     </div>
                 </Col>
 
-                {/* Columna derecha: formulario */}
+
                 <Col md={6} className="login-formulario">
                     <Card className="login-card p-4">
 
@@ -124,7 +124,7 @@ const LoginUnico = () => {
                                 />
                             </Form.Group>
 
-                            {/* Si estamos en modo Registro, mostramos la opción de elegir el rol */}
+
                             {esRegistro && (
                                 <Form.Group className="mb-4">
                                     <Form.Label className="fw-bold">¿Quién sos?</Form.Label>
@@ -148,7 +148,7 @@ const LoginUnico = () => {
                                 </Button>
                             </div>
 
-                            {/* Botón para alternar entre Login y Registro */}
+
                             <div className="text-center">
                                 <Button
                                     variant="link"

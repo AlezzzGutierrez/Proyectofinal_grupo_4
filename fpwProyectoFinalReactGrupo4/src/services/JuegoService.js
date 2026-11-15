@@ -1,5 +1,5 @@
-// Reglas y textos compartidos por los juegos
-export const PUNTOS_POR_ACIERTO = 10; // 5 rondas x 10 = 50 por juego (coincide con Resultados)
+
+export const PUNTOS_POR_ACIERTO = 10; 
 
 export const mensajeFelicitacion = (nombre, puntajeTotal) => {
   if (puntajeTotal === 100) return `¡Perfecto, ${nombre}! Sos un experto de la granja 🏆`;

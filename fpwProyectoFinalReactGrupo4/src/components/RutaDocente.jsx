@@ -1,18 +1,3 @@
-/*import { Navigate } from "react-router-dom";
-import { useAuthorization } from "../hooks/useAuthorization";
-
-const RutaDocente = ({ children }) => {
-    const { sessionUser } = useAuthorization();
-
-    // Si no es docente, lo patea al login
-    if (sessionUser?.role !== "docente") {
-        return <Navigate to="/login-docente" replace />; // <--- CAMBIÁ ESTO
-    }
-
-    return children;
-};
-
-export default RutaDocente;*/
 
 import { Navigate } from "react-router-dom";
 import { useAuthorization } from "../hooks/useAuthorization";

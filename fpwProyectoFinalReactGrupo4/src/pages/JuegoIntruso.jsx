@@ -12,7 +12,7 @@ export const JuegoIntruso = () => {
 
   const [rondaActual, setRondaActual] = useState(0);
   const [puntaje, setPuntaje] = useState(0);
-  const [respuesta, setRespuesta] = useState(null); // { elegida, acerto }
+  const [respuesta, setRespuesta] = useState(null); 
 
   const ronda = intrusoRondas[rondaActual];
   const esUltima = rondaActual + 1 === intrusoRondas.length;
@@ -46,10 +46,9 @@ export const JuegoIntruso = () => {
     <div fluid className="juego-intruso-wrapper">
       <Container className="d-flex justify-content-center align-items-center py-4">
         <div className="juego-card">
-          {/* Título del juego */}
+       
           <h2 className="juego-titulo">Juego 2: El Intruso de la Granja</h2>
 
-          {/* Barra superior estilo juego 1 */}
           <div className="barra-superior">
             <div className="progreso-contenedor">
               <div className="avatar-ronda" aria-hidden="true">
@@ -71,16 +70,14 @@ export const JuegoIntruso = () => {
             </div>
           </div>
 
-          {/* Consigna en recuadro rectangular ovalado amarillo #FFFAB5 */}
           <div className="consigna-pill">
             ¡Un animal se metió a la granja, pero no pertenece ahí! Sacá al INTRUSO.
           </div>
 
-          {/* Bandeja con los animales: ícono redondo arriba y botón abajo */}
           <div className="bandeja-opciones my-3">
             {ronda.animal.map((animal) => (
               <div key={animal.nombre} className="columna-animal">
-                {/* Ícono redondo con la imagen del animal */}
+           
                 <div
                   className={`icono-redondo-animal ${claseEstadoBoton(animal)}`}
                   onClick={() => seleccionarAnimal(animal)}
@@ -96,7 +93,6 @@ export const JuegoIntruso = () => {
                   )}
                 </div>
 
-                {/* Botón con el nombre del animal */}
                 <button
                   type="button"
                   disabled={!!respuesta}
@@ -109,7 +105,7 @@ export const JuegoIntruso = () => {
             ))}
           </div>
 
-          {/* Mensaje de resultado */}
+
           {respuesta && (
             <div
               className={`feedback-pill mt-2 ${
@@ -120,7 +116,7 @@ export const JuegoIntruso = () => {
             </div>
           )}
 
-          {/* Botón siguiente */}
+      
           {respuesta && (
             <div className="mt-3">
               <Button className="boton-siguiente" onClick={siguienteRonda}>

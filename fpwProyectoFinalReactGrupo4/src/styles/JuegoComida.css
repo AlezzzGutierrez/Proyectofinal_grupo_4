@@ -8,12 +8,11 @@
   align-items: center;
 }
 
-/* Tarjeta principal blanca redondeada ampliada */
 .juego-card {
   background-color: #FFFFFF;
   width: 95%;
   max-width: 920px;
-  min-height: auto;      /* Evita que se estire de más hacia abajo */
+  min-height: auto;      
   border-radius: 44px;
   padding: 30px 44px 34px 44px;
   box-shadow: 0 16px 36px rgba(101, 64, 44, 0.09);
@@ -31,7 +30,6 @@
   margin-bottom: 18px;
 }
 
-/* ================= BARRA SUPERIOR ================= */
 .barra-superior {
   display: flex;
   align-items: center;
@@ -98,7 +96,7 @@
   white-space: nowrap;
 }
 
-/* ================= CONSIGNA AMARILLA OVALADA ================= */
+
 .consigna-pill {
   background-color: #FFFAB5;
   color: #65402C;
@@ -113,7 +111,7 @@
   margin-bottom: 16px;
 }
 
-/* ================= ANIMAL CENTRAL ================= */
+
 .animal-protagonista-zona {
   display: flex;
   justify-content: center;
@@ -142,7 +140,6 @@
   transform: scale(1.15) rotate(-4deg);
 }
 
-/* ================= FEEDBACK ================= */
 .feedback-pill {
   font-weight: 800;
   font-size: 19px;
@@ -163,8 +160,6 @@
   color: #C92A2A;
 }
 
-/* ================= BANDEJA INFERIOR Y BOTONES ================= */
-/* Bandeja inferior compacta en una sola fila */
 .bandeja-opciones {
   background-color: #FFF3B0;
   padding: 16px 20px;
@@ -175,7 +170,7 @@
   flex-wrap: wrap;
 }
 
-/* Botones más compactos y proporcionados */
+
 .boton-ficha-comida {
   background-color: #FFFFFF;
   border: 3px solid transparent;
@@ -214,7 +209,6 @@
   color: #65402C;
 }
 
-/* Estados al responder */
 .opcion-correcta {
   background-color: #87D758 !important;
   border-color: #5BA835 !important;
@@ -240,7 +234,6 @@
   cursor: default;
 }
 
-/* ================= BOTÓN SIGUIENTE ================= */
 .boton-siguiente {
   background-color: #87D758 !important;
   color: #FFFFFF !important;
@@ -264,14 +257,13 @@
   box-shadow: 0 2px 0 #5BA835;
 }
 
-/* Imagen dentro del círculo pequeño de la barra de progreso */
+
 .avatar-ronda-img {
   width: 75%;
   height: 75%;
   object-fit: contain;
 }
 
-/* Imagen grande del animal protagonista en el centro */
 .animal-img {
   width: 165px;
   height: 165px;

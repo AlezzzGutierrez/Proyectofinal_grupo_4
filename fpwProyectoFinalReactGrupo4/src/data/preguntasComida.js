@@ -1,4 +1,4 @@
-// Juego 1: ¡Hora de Comer! Cada ronda tiene un animal, 3 comidas y la correcta.
+
 export const comidaRondas = [
   {
     id: 1, animal: "Vaca", articulo: "La", imagen: "/img/vaca.png",
