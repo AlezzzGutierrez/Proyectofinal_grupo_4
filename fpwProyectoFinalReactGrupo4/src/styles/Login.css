@@ -205,3 +205,15 @@ h1, h2, h3, h4 {
     color: #E8FF45 !important;
     text-decoration: underline !important;
 }
+
+.rol-badge-pill {
+  background-color: #FFFAB5;
+  color: #65402C;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(101, 64, 44, 0.1);
+}
