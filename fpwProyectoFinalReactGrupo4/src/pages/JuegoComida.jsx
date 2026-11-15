@@ -48,7 +48,7 @@ export const JuegoComida = () => {
 
   return (
     <div className="juego-comida-wrapper">
-      <Container className="d-flex justify-content-center align-items-center py-4">
+      <Container fluid className="d-flex justify-content-center align-items-center py-4">
         <div className="juego-card">
           {/* Título del juego */}
           <h2 className="juego-titulo">Juego 1: ¡Hora de Comer!</h2>

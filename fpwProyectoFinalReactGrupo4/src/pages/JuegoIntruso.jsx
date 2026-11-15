@@ -43,7 +43,7 @@ export const JuegoIntruso = () => {
   };
 
   return (
-    <div className="juego-intruso-wrapper">
+    <div fluid className="juego-intruso-wrapper">
       <Container className="d-flex justify-content-center align-items-center py-4">
         <div className="juego-card">
           {/* Título del juego */}
