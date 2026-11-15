@@ -9,11 +9,11 @@ const App = () => {
 
             {/* El Outlet es el lugar donde se renderizan
                 los componentes correspondientes a las rutas hijas */}
-            <main className="py-4">
+            <main className="pb-4">
                 <Menu />
                 <Outlet />
             </main>
-<MusicaFondo />
+            <MusicaFondo />
         </JuegoProvider>
     );
 };

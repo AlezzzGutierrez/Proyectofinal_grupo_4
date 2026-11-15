@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import { useAuthorization } from "../hooks/useAuthorization";
 import "../styles/Login.css";
 import { Button, Container, Form, Alert, Card, Row, Col } from "react-bootstrap";
 
+
 const LoginUnico = () => {
+    const location = useLocation();
+    const esDocente = location.pathname === "/login-docente";
     const [nombre, setNombre] = useState("");
     const [clave, setClave] = useState("");
     const [rol, setRol] = useState("nino"); // "nino" o "docente"
@@ -46,36 +49,39 @@ const LoginUnico = () => {
                 setError("Usuario o contraseña incorrectos.");
             }
         }
+
+
     };
+
 
     return (
         <Container fluid className="login-container">
             <Row className="align-items-center">
 
                 <Col md={6} className="login-presentacion">
-    <div className="presentacion-contenido p-5 rounded-5">
-        <div className="presentacion-texto">
-            <h1 className="display-5 fw-bold titulo-bienvenida">
-                ¡Bienvenido a La Granja Divertida!
-            </h1>
+                    <div className="presentacion-contenido p-5 rounded-5">
+                        <div className="presentacion-texto">
+                            <h1 className="display-5 fw-bold titulo-bienvenida">
+                                ¡Bienvenido a La Aventura en la Granja!
+                            </h1>
 
-            <p className="fs-4 mt-3">
-                El lugar ideal para que los más pequeños aprendan jugando junto a los animalitos de la granja,
-                 con actividades simples, coloridas y diseñadas especialmente para su edad.
-            </p>
-        </div>
+                            <p className="fs-4 mt-3">
+                                El lugar ideal para que los más pequeños aprendan jugando junto a los animalitos de la granja,
+                                con actividades simples, coloridas y diseñadas especialmente para su edad.
+                            </p>
+                        </div>
 
-        {/* Nubes blancas sólidas en la parte inferior */}
-        <div className="nubes-inferiores">
-            <svg viewBox="0 0 800 110" preserveAspectRatio="none" className="nubes-svg">
-                <path
-                    d="M0,110 L0,80 Q60,42 125,72 Q190,26 270,68 Q350,20 435,66 Q520,24 600,68 Q680,32 750,72 Q780,55 800,75 L800,110 Z"
-                    fill="#FFFFFF"
-                />
-            </svg>
-        </div>
-    </div>
-</Col>
+                        {/* Nubes blancas sólidas en la parte inferior */}
+                        <div className="nubes-inferiores">
+                            <svg viewBox="0 0 800 110" preserveAspectRatio="none" className="nubes-svg">
+                                <path
+                                    d="M0,110 L0,80 Q60,42 125,72 Q190,26 270,68 Q350,20 435,66 Q520,24 600,68 Q680,32 750,72 Q780,55 800,75 L800,110 Z"
+                                    fill="#FFFFFF"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                </Col>
 
                 {/* Columna derecha: formulario */}
                 <Col md={6} className="login-formulario">
@@ -84,7 +90,11 @@ const LoginUnico = () => {
                         <h4 className="titulo-login mb-4 text-center">
                             {esRegistro ? "Crear una cuenta nueva" : "Iniciar Sesión"}
                         </h4>
-
+                        <div className="rol-badge-pill">
+                            {esDocente
+                                ? " Estás accediendo como Docente"
+                                : " Estás accediendo como Niño"}
+                        </div>
                         <Form onSubmit={handleSubmit}>
                             {error && (
                                 <Alert variant="danger" className="rounded-4 py-2 text-center fs-6">
