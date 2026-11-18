@@ -49,7 +49,7 @@ const Menu = () => {
                                     </Button>
                                 )}
 
-                                {esNino && (
+                                {(esNino || (esDocente && location.pathname !== "/panel")) && (
                                     <>
                                         <Button as={Link} to="/comida" className="btn-menu-pill btn-menu-amarillo">
                                             ¡Hora de Comer!
