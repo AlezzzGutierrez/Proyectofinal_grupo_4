@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 import { intrusoRondas } from "../data/preguntasIntruso";
 import { PUNTOS_POR_ACIERTO } from "../services/JuegoService";
 import { useNavigate } from "react-router-dom";
 import { useJuego } from "../hooks/useJuego.js";
+import imagenService from "../services/imagenService";
 import "../styles/JuegoIntruso.css";
 
 export const JuegoIntruso = () => {
@@ -12,11 +13,30 @@ export const JuegoIntruso = () => {
 
   const [rondaActual, setRondaActual] = useState(0);
   const [puntaje, setPuntaje] = useState(0);
-  const [respuesta, setRespuesta] = useState(null); 
+  const [respuesta, setRespuesta] = useState(null);
+  const [imagenesRonda, setImagenesRonda] = useState({});
 
   const ronda = intrusoRondas[rondaActual];
   const esUltima = rondaActual + 1 === intrusoRondas.length;
   const progresoPorcentaje = ((rondaActual + 1) / intrusoRondas.length) * 100;
+
+  useEffect(() => {
+    const cargarImagenesRonda = async () => {
+      const imagenesCargadas = {};
+      for (const animal of ronda.animal) {
+        if (animal.imagen) {
+          const nombreArchivo = animal.imagen.replace("/img/", "");
+          const urlImagen = await imagenService.obtenerImagen(nombreArchivo);
+          if (urlImagen) {
+            imagenesCargadas[animal.nombre] = urlImagen;
+          }
+        }
+      }
+      setImagenesRonda(imagenesCargadas);
+    };
+
+    cargarImagenesRonda();
+  }, [rondaActual]);
 
   const seleccionarAnimal = (animal) => {
     if (respuesta) return;
@@ -43,10 +63,9 @@ export const JuegoIntruso = () => {
   };
 
   return (
-    <div fluid className="juego-intruso-wrapper">
+    <div className="juego-intruso-wrapper">
       <Container className="d-flex justify-content-center align-items-center py-4">
         <div className="juego-card">
-       
           <h2 className="juego-titulo">Juego 2: El Intruso de la Granja</h2>
 
           <div className="barra-superior">
@@ -77,14 +96,13 @@ export const JuegoIntruso = () => {
           <div className="bandeja-opciones my-3">
             {ronda.animal.map((animal) => (
               <div key={animal.nombre} className="columna-animal">
-           
                 <div
                   className={`icono-redondo-animal ${claseEstadoBoton(animal)}`}
                   onClick={() => seleccionarAnimal(animal)}
                 >
-                  {animal.imagen ? (
+                  {imagenesRonda[animal.nombre] ? (
                     <img
-                      src={animal.imagen}
+                      src={imagenesRonda[animal.nombre]}
                       alt={animal.nombre}
                       className="animal-icono-img"
                     />
@@ -105,7 +123,6 @@ export const JuegoIntruso = () => {
             ))}
           </div>
 
-
           {respuesta && (
             <div
               className={`feedback-pill mt-2 ${
@@ -116,7 +133,6 @@ export const JuegoIntruso = () => {
             </div>
           )}
 
-      
           {respuesta && (
             <div className="mt-3">
               <Button className="boton-siguiente" onClick={siguienteRonda}>

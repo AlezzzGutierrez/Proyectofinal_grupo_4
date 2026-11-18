@@ -2,18 +2,26 @@ import { useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuthorization } from "../hooks/useAuthorization";
+import { useJuego } from "../hooks/useJuego";
 import resultadosService from "../services/resultadosService";
 import "../styles/Resultados.css";
 
 const Resultados = () => {
     const navigate = useNavigate();
-    const { clearSession } = useAuthorization();
-
+    const { clearSession, sessionUser } = useAuthorization();
+    const { reiniciarJuego } = useJuego();
+    
     const [resultado] = useState(() => resultadosService.obtenerResultadoActual());
 
     const handlePlayAgain = () => {
         clearSession();
+        reiniciarJuego();
         navigate("/");
+    };
+
+    const handleVolverAlPanel = () => {
+        reiniciarJuego();
+        navigate("/panel");
     };
 
     return (
@@ -56,9 +64,16 @@ const Resultados = () => {
                             {resultado.mensaje}
                         </p>
 
-                        <Button className="boton-jugar-nuevo w-100" onClick={handlePlayAgain}>
-                            Jugar de nuevo
-                        </Button>
+                        {}
+                        {sessionUser?.rol === "docente" || resultado.rol === "docente" ? (
+                            <Button className="boton-jugar-nuevo w-100" variant="warning" onClick={handleVolverAlPanel}>
+                                Volver al Panel Docente 🏠
+                            </Button>
+                        ) : (
+                            <Button className="boton-jugar-nuevo w-100" onClick={handlePlayAgain}>
+                                Jugar de nuevo
+                            </Button>
+                        )}
                     </Card.Body>
                 </Card>
             </Container>

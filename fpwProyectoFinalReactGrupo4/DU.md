@@ -53,6 +53,62 @@ Participación en el desarrollo del proyecto final en React (juego educativo par
 Todo el código sugerido por la IA fue revisado y adaptado antes de incorporarlo al proyecto.
 
 ---
+# [Salas, Yesica Fabiana]
+# Proyecto Final - Grupo N°4 / La Gran Aventura en la Granja
+# Fecha de Actualización: [ 17/11/2026 -- 18/11/2026]
+# Participacion:
+mi participacion consta a travez de la correcciones de errores
+
+# Métodos y elementos utilizados
+* React Hooks (useState, useEffect, useContext, useRef): Para manejar el estado de los juegos, el ciclo de vida de los componentes, el contexto global de la aplicación y las referencias al sistema de audio.
+
+* React Router DOM (createBrowserRouter, RouterProvider): Para la navegación entre las distintas pantallas (login, juegos, panel del docente, resultados) y la protección de rutas privadas.
+
+* Context API (JuegoContext, AuthorizationContext, AudioContext): Para compartir el estado del juego, la sesión del usuario y el control del audio de forma global en toda la aplicación.
+
+* Axios: Utilizado en audioService.js e imagenService.js para realizar peticiones HTTP asíncronas locales y cargar los archivos multimedia desde la carpeta public.
+
+* Funciones asíncronas (async/await): Implementadas en la carga de imágenes, música y en el proceso de login/registro de usuarios.
+
+* Local Storage: Para persistir la sesión del usuario, guardar los puntajes de las partidas y los usuarios registrados.
+
+# Archivos (Modificados, Creados, Eliminados)
+* Creados:
+
+- src/contexts/AudioContext.jsx
+- src/services/audioService.js
+- src/services/imagenService.js
+- src/components/ControlAudio.jsx
+
+* Modificados:
+
+- src/App.jsx
+- src/main.jsx
+- src/routes/routes.jsx
+- src/pages/LoginUnico.jsx
+- src/pages/SeleccionUsuario.jsx
+- src/pages/PanelDocente.jsx
+- src/pages/Resultados.jsx
+- src/pages/JuegoComida.jsx
+- src/pages/JuegoIntruso.jsx
+- src/contexts/JuegoContext.jsx
+- src/services/resultadosService.js
+- src/services/validacion.js
+- src/components/Menu.jsx
+- src/components/RutaDocente.jsx
+- src/components/Form.jsx
+- src/data/preguntasComida.js
+- src/data/preguntasIntruso.js
+
+* Eliminados:
+
+- src/components/Resultados.jsx (código duplicado).
+- src/components/MusicaFondo.jsx (reemplazado por una lógica de audio más robusta con Context).
+
+# Uso de IA
+Sí: Se utilizó la herramienta DeepSeek para la corrección de errores de sintaxis tras conflictos de Git, y la implementación del contexto de audio para evitar que la música se corte al cambiar de pantalla.
+
+--
 
 # [Apellido, Nombre]
 

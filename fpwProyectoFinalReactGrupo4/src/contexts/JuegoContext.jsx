@@ -3,7 +3,6 @@ import resultadosService from "../services/resultadosService";
 
 export const JuegoContext = createContext(null);
 
-
 const CLAVE_PUNTAJE_COMIDA = "puntajeJuego1";
 const CLAVE_PUNTAJE_INTRUSO = "puntajeJuego2";
 
@@ -12,6 +11,7 @@ export const JuegoProvider = ({ children }) => {
     const [nombreJugador, setNombreJugador] = useState("");
     const [puntajeComida, setPuntajeComida] = useState(0);
     const [puntajeIntruso, setPuntajeIntruso] = useState(0);
+
     const borrarPuntajesGuardados = () => {
         localStorage.removeItem(CLAVE_PUNTAJE_COMIDA);
         localStorage.removeItem(CLAVE_PUNTAJE_INTRUSO);
@@ -33,16 +33,30 @@ export const JuegoProvider = ({ children }) => {
         setPuntajeIntruso(puntos);
         localStorage.setItem(CLAVE_PUNTAJE_INTRUSO, puntos);
 
-  
-        const storedUser = localStorage.getItem("currentUser");
-        const usuario = storedUser ? JSON.parse(storedUser) : null;
-        const nombreFinal = nombreJugador || usuario?.nombre || usuario?.name || "Sin nombre";
+        let nombreFinal = sessionStorage.getItem("jugadorActualNombre");
+        let rolFinal = sessionStorage.getItem("jugadorActualRol");
+
+        if (!nombreFinal && nombreJugador) {
+            nombreFinal = nombreJugador;
+            rolFinal = "nino";
+        }
+
+        if (!nombreFinal) {
+            const storedUser = localStorage.getItem("currentUser");
+            const usuario = storedUser ? JSON.parse(storedUser) : null;
+            nombreFinal = usuario?.nombre || usuario?.name || "Sin nombre";
+            rolFinal = usuario?.rol || "nino";
+        }
 
         resultadosService.guardar({
             nombre: nombreFinal,
+            rol: rolFinal || "nino",
             puntajeComida: Number(localStorage.getItem(CLAVE_PUNTAJE_COMIDA)) || 0,
             puntajeIntruso: puntos
         });
+
+        sessionStorage.removeItem("jugadorActualNombre");
+        sessionStorage.removeItem("jugadorActualRol");
     };
 
     const reiniciarJuego = () => {
@@ -68,4 +82,4 @@ export const JuegoProvider = ({ children }) => {
             {children}
         </JuegoContext.Provider>
     );
-}; 
+};

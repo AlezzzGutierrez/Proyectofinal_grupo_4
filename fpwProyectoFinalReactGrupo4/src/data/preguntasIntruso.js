@@ -6,12 +6,12 @@ export const intrusoRondas =[
             {nombre: "Gato", esIntruso: false, imagen: "/img/gato.png"},
             {nombre: "Leon", esIntruso: true, imagen: "/img/leon.png"}
         ],
-        avisoExito: "¡Felicidades! El instruso es el Leon",
+        avisoExito: "¡Felicidades! El intruso es el Leon",
         avisoFallo: "Incorrecto, ese animal si vive en la granja"
     },{
         id: 2,
         animal: [
-            {nombre: "Vaca", esIntruso: false, imagen: "/img/vaca 2.png"},
+            {nombre: "Vaca", esIntruso: false, imagen: "/img/vaca2.png"},
             {nombre: "Oveja", esIntruso: false, imagen: "/img/ovejaa.png"},
             {nombre:"Cocodrilo", esIntruso: true, imagen: "/img/cocodrilo.png"}
         ],
@@ -30,7 +30,7 @@ export const intrusoRondas =[
         id: 4,
         animal: [
             {nombre: "Caballo", esIntruso: false, imagen: "/img/caballoo.png"},
-            {nombre: "Vaca", esIntruso: false, imagen: "/img/vaca 2.png"},
+            {nombre: "Vaca", esIntruso: false, imagen: "/img/vaca2.png"},
             {nombre: "Tiburon", esIntruso: true, imagen: "/img/tiburon.png"}
         ],
         avisoExito: "¡Felicidades! El tiburon es un intruso",

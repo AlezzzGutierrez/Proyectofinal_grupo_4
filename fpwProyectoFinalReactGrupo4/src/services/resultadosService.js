@@ -21,8 +21,6 @@ const leerSesion = () => {
 
 const leerPuntaje = (clave) => Number(localStorage.getItem(clave)) || 0;
 
-const nombreDeLaSesion = () => leerSesion()?.nombre || "Sin nombre";
-
 const mensajeFinal = (total) => {
     if (total >= 80) return "¡Increíble trabajo! ¡Eres un verdadero experto de la granja!";
     if (total >= 50) return "¡Muy bien hecho! Has completado los desafíos con gran esfuerzo.";
@@ -30,11 +28,12 @@ const mensajeFinal = (total) => {
 };
 
 const resultadosService = {
-    guardar: ({ nombre, puntajeComida, puntajeIntruso }) => {
+    guardar: ({ nombre, rol, puntajeComida, puntajeIntruso }) => {
         const resultados = leer();
 
         resultados.push({
-            nombre: nombre || nombreDeLaSesion(),
+            nombre: nombre || "Sin nombre",
+            rol: rol || "nino",
             puntajeComida,
             puntajeIntruso,
             total: puntajeComida + puntajeIntruso,
@@ -48,9 +47,11 @@ const resultadosService = {
         const puntajeComida = leerPuntaje(CLAVE_PUNTAJE_COMIDA);
         const puntajeIntruso = leerPuntaje(CLAVE_PUNTAJE_INTRUSO);
         const total = puntajeComida + puntajeIntruso;
+        const usuario = leerSesion();
 
         return {
-            nombre: leerSesion()?.nombre || null,
+            nombre: usuario?.nombre || "Sin nombre",
+            rol: usuario?.rol || "nino",
             puntajeComida,
             puntajeIntruso,
             total,
