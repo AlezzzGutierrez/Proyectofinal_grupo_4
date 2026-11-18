@@ -11,7 +11,6 @@ const Menu = () => {
     const esDocente = sessionUser?.rol === "docente";
     const esNino = sessionUser?.rol === "nino";
 
-    // Pantallas donde nunca deben verse botones de sesión o juegos
     const rutasPublicas = ["/", "/login-nino", "/login-docente"];
     const enPantallaPublica = rutasPublicas.includes(location.pathname);
 
@@ -34,7 +33,6 @@ const Menu = () => {
                     Aventura en la Granja
                 </Navbar.Brand>
 
-                {/* Solo muestra botones si hay sesión activa Y no estamos en inicio/login */}
                 {sessionUser && !enPantallaPublica && (
                     <>
                         <Navbar.Toggle aria-controls="menu-principal" />

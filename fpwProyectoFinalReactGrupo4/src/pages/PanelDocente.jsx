@@ -10,11 +10,9 @@ const PanelDocente = () => {
     const navigate = useNavigate();
     const { sessionUser } = useAuthorization();
 
-    // Separar resultados de niños y partidas de prueba de docentes
     const resultadosNinos = resultados.filter((r) => r.rol !== "docente");
     const resultadosDocentes = resultados.filter((r) => r.rol === "docente");
 
-    // El promedio solo toma en cuenta a los alumnos
     const promedioNinos = resultadosNinos.length
         ? Math.round(
             resultadosNinos.reduce((suma, resultado) => suma + resultado.total, 0) /
@@ -72,8 +70,7 @@ const PanelDocente = () => {
                         </Alert>
                     ) : (
                         <>
-                            {/* SECCIÓN 1: RESULTADOS DE LOS ALUMNOS */}
-                            {/* Título de la tabla de niños */}
+                          
                             <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                                 <span className="subtitulo-tabla">Resultados de los Niños</span>
                                 <div className="resumen-estadisticas-pill mb-0">
@@ -122,10 +119,9 @@ const PanelDocente = () => {
                                 </div>
                             )}
 
-                            {/* SECCIÓN 2: PARTIDAS DE PRUEBA DEL DOCENTE */}
                             {resultadosDocentes.length > 0 && (
                                 <>
-                                    {/* Título de la tabla de docentes */}
+
                                     <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                                         <span className="subtitulo-tabla">Partidas de Prueba (Docentes)</span>
                                         <div className="resumen-estadisticas-pill mb-0">

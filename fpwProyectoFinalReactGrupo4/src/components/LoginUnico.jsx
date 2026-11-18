@@ -19,7 +19,6 @@ const LoginUnico = () => {
     const { saveSession } = useAuthorization();
     const navigate = useNavigate();
 
-    // Sincroniza el rol y limpia errores si cambia de ruta con el botón "Cambiar rol"
     useEffect(() => {
         setRol(esDocente ? "docente" : "nino");
         setError("");
@@ -55,7 +54,7 @@ const LoginUnico = () => {
         } else {
             const usuario = await authService.login(nombre, clave);
             if (usuario) {
-                // Validación: comprobar que el rol de la cuenta coincida con la pantalla actual
+                
                 if (usuario.rol !== rol) {
                     setError(
                         rol === "docente"

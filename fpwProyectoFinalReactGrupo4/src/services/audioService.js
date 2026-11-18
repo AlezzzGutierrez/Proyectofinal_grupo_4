@@ -13,7 +13,7 @@ const verificarYReproducir = async (ruta, volumen = 0.7) => {
             await audio.play();
         }
     } catch (error) {
-        console.error(`Error al cargar el sonido ${ruta} con Axios:`, error);
+        
     }
 };
 
@@ -26,8 +26,7 @@ const audioService = {
                 return "/music/granja.mp3";
             }
         } catch (error) {
-            console.error("Error al cargar la música con Axios:", error);
-            return null;
+                        return null;
         }
     },
 

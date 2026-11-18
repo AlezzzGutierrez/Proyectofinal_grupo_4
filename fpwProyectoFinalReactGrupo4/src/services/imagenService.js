@@ -9,7 +9,7 @@ const imagenService = {
             const respuesta = await api.get(ruta, { responseType: 'blob' });
             return URL.createObjectURL(respuesta.data);
         } catch (error) {
-            console.error(`Error al cargar la imagen ${nombreArchivo} con Axios:`, error);
+           
             return null; 
         }
     }

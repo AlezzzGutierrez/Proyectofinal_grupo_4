@@ -7,7 +7,6 @@
   padding: 28px 0;
 }
 
-/* Tarjeta principal celeste suave con nubes */
 .panel-docente-card {
   background-color: #CBEAFF;
   background-size: 180px 180px;
@@ -28,7 +27,6 @@
   margin-bottom: 18px;
 }
 
-/* Botones de acción con relieve suave */
 .btn-panel-pill {
   border: none !important;
   border-radius: 999px !important;
@@ -66,7 +64,6 @@
   background-color: #FA6464 !important;
 }
 
-/* Botón principal en azul medio amigable (menos estridente que el amarillo) */
 .btn-panel-amarillo {
   background-color: #4EA8DE !important;
   color: #FFFFFF !important;
@@ -77,7 +74,6 @@
   background-color: #3D99D1 !important;
 }
 
-/* Píldora de resumen (Partidas jugadas · Promedio) */
 .resumen-estadisticas-pill {
   background-color: #FFFFFF;
   color: #2B5978;
@@ -90,7 +86,6 @@
   box-shadow: 0 4px 10px rgba(43, 89, 120, 0.08);
 }
 
-/* Contenedor redondeado para la tabla */
 .tabla-resultados-contenedor {
   background-color: #FFFFFF;
   border-radius: 26px;
@@ -120,7 +115,6 @@
   border-color: #F0F6FA !important;
 }
 
-/* Etiquetas de rol redondeadas */
 .badge-rol-docente {
   background-color: #FFF3B0;
   color: #8C6400;
