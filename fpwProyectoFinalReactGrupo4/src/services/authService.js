@@ -19,7 +19,7 @@ const authService = {
             id: Date.now(),
             nombre: nombre.trim(),
             clave: clave, 
-            rol: rol // <--- ACÁ SE GUARDA EL ROL
+            rol: rol
         };
         usuarios.push(nuevoUsuario);
         guardarUsuarios(usuarios);

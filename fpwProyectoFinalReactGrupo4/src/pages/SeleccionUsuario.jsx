@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { Button, Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form"; // <-- Integramos el Form que estaba colgando
 import { validarNombre } from "../services/validacion";
+=======
+import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import "../styles/SeleccionUsuario.css";
+>>>>>>> db0f66ad4977cda6d8202d81e541273f99303bd8
 
 export const SeleccionUsuario = () => {
   const navigate = useNavigate();
@@ -10,7 +16,7 @@ export const SeleccionUsuario = () => {
   const [errorNombre, setErrorNombre] = useState("");
 
   const elegirUsuario = (tipo) => {
-     navigate(tipo === "docente" ? "/login-docente" : "/login-nino");
+    navigate(tipo === "docente" ? "/login-docente" : "/login-nino");
   };
 
   // Función para cuando el niño usa el Form rápido
@@ -27,6 +33,7 @@ export const SeleccionUsuario = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Container className="text-center mt-5">
       <h2>¡Bienvenido a la Granja!</h2>
       <p className="lead">¿Quién va a usar la aplicación?</p>
@@ -57,6 +64,36 @@ export const SeleccionUsuario = () => {
         </Card.Body>
       </Card>
     </Container>
+=======
+    <div className="seleccion-wrapper">
+      <Container fluid className="d-flex justify-content-center align-items-center py-4">
+        <div className="seleccion-card text-center">
+          <h2 className="seleccion-titulo">¡Bienvenido a La Granja!</h2>
+          <p className="seleccion-subtitulo">¿Quién va a usar la aplicación?</p>
+
+          <div className="opciones-rol-contenedor">
+            <button
+              type="button"
+              className="boton-rol boton-nino"
+              onClick={() => elegirUsuario("nino")}
+            >
+              <span className="rol-emoji" aria-hidden="true">🧒</span>
+              <span className="rol-texto">Soy niño</span>
+            </button>
+
+            <button
+              type="button"
+              className="boton-rol boton-docente"
+              onClick={() => elegirUsuario("docente")}
+            >
+              <span className="rol-emoji" aria-hidden="true">👩‍🏫</span>
+              <span className="rol-texto">Soy docente</span>
+            </button>
+          </div>
+        </div>
+      </Container>
+    </div>
+>>>>>>> db0f66ad4977cda6d8202d81e541273f99303bd8
   );
 };
 

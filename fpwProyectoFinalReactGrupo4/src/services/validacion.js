@@ -1,3 +1,4 @@
+
 const SOLO_LETRAS = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$/;
 
 export const validarNombre = (nombre) => {
