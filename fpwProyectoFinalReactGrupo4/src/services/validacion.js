@@ -1,6 +1,3 @@
-// Validaciones de los formularios. Cada una devuelve un mensaje de error,
-// o un texto vacío ("") si el dato es válido.
-
 const SOLO_LETRAS = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$/;
 
 export const validarNombre = (nombre) => {

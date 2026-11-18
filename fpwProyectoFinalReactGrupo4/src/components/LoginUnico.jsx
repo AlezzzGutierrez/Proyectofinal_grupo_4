@@ -3,24 +3,38 @@ import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Alert, Card } from "react-bootstrap";
 import authService from "../services/authService";
 import { useAuthorization } from "../hooks/useAuthorization";
+import { validarNombre, validarClave } from "../services/validacion";
+import { DOCENTE } from "../data/docentes";
 
 const LoginUnico = () => {
     const [nombre, setNombre] = useState("");
     const [clave, setClave] = useState("");
-    const [rol, setRol] = useState("nino"); // "nino" o "docente"
-    const [esRegistro, setEsRegistro] = useState(false); // Controla si estamos creando cuenta o iniciando sesión
-    
+    const [rol, setRol] = useState("nino"); 
+    const [esRegistro, setEsRegistro] = useState(false); 
     const [error, setError] = useState("");
     const { saveSession } = useAuthorization();
     const navigate = useNavigate();
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
 
-        if (!nombre.trim() || !clave.trim()) {
-            setError("¡Por favor, completa todos los campos!");
+        // --- USANDO VALIDACION.JS ---
+        const errorNombre = validarNombre(nombre);
+        const errorClave = validarClave(clave);
+
+        if (errorNombre || errorClave) {
+            setError(errorNombre || errorClave);
             return;
+        }
+
+        // --- VALIDACIÓN CON DOCENTES.JS ---
+        // Si el nombre que ponen es el del archivo docentes.js, 
+        // verificamos que la clave coincida (para que no cualquiera se haga pasar por el admin).
+        if (rol === "docente" && nombre.trim().toLowerCase() === DOCENTE.usuario.toLowerCase()) {
+            if (clave !== DOCENTE.clave) {
+                setError("La contraseña para el usuario 'docente' es incorrecta.");
+                return;
+            }
         }
 
         if (esRegistro) {
@@ -30,7 +44,6 @@ const LoginUnico = () => {
             if (resultado.error) {
                 setError(resultado.error);
             } else {
-                // Si se registró bien, iniciamos sesión automáticamente
                 saveSession(resultado.usuario);
                 navigate(resultado.usuario.rol === "docente" ? "/panel" : "/comida");
             }
@@ -78,7 +91,6 @@ const LoginUnico = () => {
                         />
                     </Form.Group>
 
-                    {/* Si estamos en modo Registro, mostramos la opción de elegir el rol */}
                     {esRegistro && (
                         <Form.Group className="mb-4">
                             <Form.Label className="fw-bold">¿Quién sos?</Form.Label>
@@ -93,7 +105,6 @@ const LoginUnico = () => {
                         {esRegistro ? "Registrarme y Entrar" : "Ingresar"}
                     </Button>
 
-                    {/* Botón para alternar entre Login y Registro */}
                     <div className="text-center">
                         <Button 
                             variant="link" 

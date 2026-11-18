@@ -1,10 +1,13 @@
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuthorization } from "../hooks/useAuthorization";
+import { useJuego } from "../hooks/useJuego"; // Para limpiar los puntajes
+import { mensajeFelicitacion } from "../services/JuegoService"; // El mensaje del profe
 
 const Resultados = () => {
     const navigate = useNavigate();
     const { clearSession } = useAuthorization();
+    const { reiniciarJuego } = useJuego(); // Traemos la función para limpiar
 
     const storedUser = localStorage.getItem("currentUser");
     const currentUser = storedUser ? JSON.parse(storedUser) : null;
@@ -13,19 +16,13 @@ const Resultados = () => {
     const gameScore2 = Number(localStorage.getItem("puntajeJuego2")) || 0;
     const totalScore = gameScore1 + gameScore2;
 
-    const getCongratulationMessage = (total) => {
-        if (total >= 80) {
-            return "¡Increíble trabajo! ¡Eres un verdadero experto de la granja!";
-        } else if (total >= 50) {
-            return "¡Muy bien hecho! Has completado los desafíos con gran esfuerzo.";
-        } else {
-            return "¡Buen intento! Sigue practicando para convertirte en el mejor granjero.";
-        }
-    };
+    // Usamos el nombre del usuario (o "amigo" por si acaso)
+    const nombreParaMostrar = currentUser ? currentUser.name : "amigo";
 
     const handlePlayAgain = () => {
-        clearSession(); 
-        navigate("/");  
+        clearSession(); // Borra la sesión (nombre y rol)
+        reiniciarJuego(); // Borra los puntajes del localStorage
+        navigate("/");  // Vuelve al inicio
     };
 
     return (
@@ -58,7 +55,8 @@ const Resultados = () => {
                     </h3>
 
                     <p className="fst-italic text-secondary mb-4">
-                        {getCongratulationMessage(totalScore)}
+                        {/* Acá usamos la función que armaron en JuegoService */}
+                        {mensajeFelicitacion(nombreParaMostrar, totalScore)}
                     </p>
 
                     <Button variant="success" size="lg" className="w-100" onClick={handlePlayAgain}>

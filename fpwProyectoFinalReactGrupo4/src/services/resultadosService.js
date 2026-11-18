@@ -1,6 +1,3 @@
-// Guarda y lee los resultados de los niños en el navegador (localStorage).
-// Solo se ven en la misma computadora y navegador donde se jugó.
-
 const CLAVE = "resultados";
 
 const leer = () => {
@@ -12,22 +9,14 @@ const leer = () => {
     }
 };
 
-// Si no se pasa el nombre, se toma el de la sesión del niño
-const nombreDeLaSesion = () => {
-    try {
-        const sesion = JSON.parse(localStorage.getItem("currentUser"));
-        return sesion?.name || "Sin nombre";
-    } catch {
-        return "Sin nombre";
-    }
-};
-
 const resultadosService = {
-    guardar: ({ nombre, puntajeComida, puntajeIntruso }) => {
+    // Ahora recibimos también el 'rol' (nino o docente)
+    guardar: ({ nombre, rol, puntajeComida, puntajeIntruso }) => {
         const resultados = leer();
 
         resultados.push({
-            nombre: nombre || nombreDeLaSesion(),
+            nombre: nombre || "Sin nombre",
+            rol: rol || "nino", // Por defecto asumimos que es niño
             puntajeComida,
             puntajeIntruso,
             total: puntajeComida + puntajeIntruso,
@@ -37,7 +26,6 @@ const resultadosService = {
         localStorage.setItem(CLAVE, JSON.stringify(resultados));
     },
 
-    // Los más recientes primero
     obtenerTodos: () => leer().sort((a, b) => new Date(b.fecha) - new Date(a.fecha)),
 
     borrarTodos: () => localStorage.removeItem(CLAVE)
