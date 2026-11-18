@@ -5,6 +5,7 @@ import { PUNTOS_POR_ACIERTO } from "../services/JuegoService";
 import { useNavigate } from "react-router-dom";
 import { useJuego } from "../hooks/useJuego.js";
 import imagenService from "../services/imagenService";
+import audioService from "../services/audioService";
 import "../styles/JuegoComida.css";
 
 export const JuegoComida = () => {
@@ -37,7 +38,14 @@ export const JuegoComida = () => {
   const elegirComida = (opcion) => {
     if (respuesta) return;
     const acerto = opcion.texto === ronda.correcta;
-    if (acerto) setPuntaje((prev) => prev + PUNTOS_POR_ACIERTO);
+
+    if (acerto) {
+      setPuntaje((prev) => prev + PUNTOS_POR_ACIERTO);
+      audioService.reproducirAcierto();
+    } else {
+      audioService.reproducirError();
+    }
+
     setRespuesta({ elegida: opcion.texto, acerto });
   };
 

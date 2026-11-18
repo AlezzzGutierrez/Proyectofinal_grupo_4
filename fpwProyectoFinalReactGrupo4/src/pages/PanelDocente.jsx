@@ -10,8 +10,16 @@ const PanelDocente = () => {
     const navigate = useNavigate();
     const { sessionUser } = useAuthorization();
 
-    const promedio = resultados.length
-        ? Math.round(resultados.reduce((suma, resultado) => suma + resultado.total, 0) / resultados.length)
+    // Separar resultados de niños y partidas de prueba de docentes
+    const resultadosNinos = resultados.filter((r) => r.rol !== "docente");
+    const resultadosDocentes = resultados.filter((r) => r.rol === "docente");
+
+    // El promedio solo toma en cuenta a los alumnos
+    const promedioNinos = resultadosNinos.length
+        ? Math.round(
+            resultadosNinos.reduce((suma, resultado) => suma + resultado.total, 0) /
+            resultadosNinos.length
+        )
         : 0;
 
     const formatoFecha = (fechaIso) =>
@@ -64,48 +72,105 @@ const PanelDocente = () => {
                         </Alert>
                     ) : (
                         <>
-                            <div className="resumen-estadisticas-pill">
-                                Partidas jugadas: {resultados.length} · Promedio: {promedio} / 100
+                            {/* SECCIÓN 1: RESULTADOS DE LOS ALUMNOS */}
+                            {/* Título de la tabla de niños */}
+                            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                <span className="subtitulo-tabla">Resultados de los Niños</span>
+                                <div className="resumen-estadisticas-pill mb-0">
+                                    Partidas de niños: {resultadosNinos.length} · Promedio: {promedioNinos} / 100
+                                </div>
                             </div>
 
-                            <div className="tabla-resultados-contenedor">
-                                <Table hover responsive className="tabla-granja">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Rol</th>
-                                            <th className="text-center">¡Hora de Comer!</th>
-                                            <th className="text-center">El Intruso</th>
-                                            <th className="text-center">Total</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {resultados.map((resultado, index) => (
-                                            <tr key={index}>
-                                                <td>{resultado.nombre}</td>
-                                                <td>
-                                                    <span
-                                                        className={
-                                                            resultado.rol === "docente"
-                                                                ? "badge-rol-docente"
-                                                                : "badge-rol-nino"
-                                                        }
-                                                    >
-                                                        {resultado.rol === "docente" ? "Docente" : "Niño"}
-                                                    </span>
-                                                </td>
-                                                <td className="text-center">{resultado.puntajeComida} / 50</td>
-                                                <td className="text-center">{resultado.puntajeIntruso} / 50</td>
-                                                <td className="text-center">
-                                                    <strong>{resultado.total} / 100</strong>
-                                                </td>
-                                                <td>{formatoFecha(resultado.fecha)}</td>
+                            {resultadosNinos.length === 0 ? (
+                                <Alert variant="light" className="rounded-4 fw-bold text-center border-0 shadow-sm mb-4">
+                                    Aún no hay partidas jugadas por niños.
+                                </Alert>
+                            ) : (
+                                <div className="tabla-resultados-contenedor mb-5">
+                                    <Table hover responsive className="tabla-granja">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Rol</th>
+                                                <th className="text-center">¡Hora de Comer!</th>
+                                                <th className="text-center">El Intruso</th>
+                                                <th className="text-center">Total</th>
+                                                <th>Fecha</th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </Table>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                            {resultadosNinos.map((resultado, index) => (
+                                                <tr key={index}>
+                                                    <td>{resultado.nombre}</td>
+                                                    <td>
+                                                        <span className="badge-rol-nino">Niño</span>
+                                                    </td>
+                                                    <td className="text-center">
+                                                        {resultado.puntajeComida} / 50
+                                                    </td>
+                                                    <td className="text-center">
+                                                        {resultado.puntajeIntruso} / 50
+                                                    </td>
+                                                    <td className="text-center">
+                                                        <strong>{resultado.total} / 100</strong>
+                                                    </td>
+                                                    <td>{formatoFecha(resultado.fecha)}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            )}
+
+                            {/* SECCIÓN 2: PARTIDAS DE PRUEBA DEL DOCENTE */}
+                            {resultadosDocentes.length > 0 && (
+                                <>
+                                    {/* Título de la tabla de docentes */}
+                                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                        <span className="subtitulo-tabla">Partidas de Prueba (Docentes)</span>
+                                        <div className="resumen-estadisticas-pill mb-0">
+                                            Pruebas realizadas: {resultadosDocentes.length}
+                                        </div>
+                                    </div>
+
+                                    <div className="tabla-resultados-contenedor">
+                                        <Table hover responsive className="tabla-granja">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Rol</th>
+                                                    <th className="text-center">¡Hora de Comer!</th>
+                                                    <th className="text-center">El Intruso</th>
+                                                    <th className="text-center">Total</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {resultadosDocentes.map((resultado, index) => (
+                                                    <tr key={index}>
+                                                        <td>{resultado.nombre}</td>
+                                                        <td>
+                                                            <span className="badge-rol-docente">
+                                                                Docente
+                                                            </span>
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {resultado.puntajeComida} / 50
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {resultado.puntajeIntruso} / 50
+                                                        </td>
+                                                        <td className="text-center">
+                                                            <strong>{resultado.total} / 100</strong>
+                                                        </td>
+                                                        <td>{formatoFecha(resultado.fecha)}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                                </>
+                            )}
                         </>
                     )}
                 </div>

@@ -7,30 +7,28 @@
   padding: 28px 0;
 }
 
-/* Tarjeta principal verde con nubes */
+/* Tarjeta principal celeste suave con nubes */
 .panel-docente-card {
-  background-color: #87D758;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M35 55h42a13 13 0 0 0 0-26 17 17 0 0 0-32-5 14 14 0 0 0-10 31z' fill='%239FE973' opacity='0.65'/%3E%3Cpath d='M110 135h48a15 15 0 0 0 0-30 19 19 0 0 0-36-6 15 15 0 0 0-12 36z' fill='%239FE973' opacity='0.55'/%3E%3Cpath d='M18 145h30a9 9 0 0 0 0-18 12 12 0 0 0-22-4 10 10 0 0 0-8 22z' fill='%239FE973' opacity='0.45'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+  background-color: #CBEAFF;
   background-size: 180px 180px;
 
   width: 95%;
   max-width: 1080px;
   border-radius: 42px;
   padding: 36px 42px;
-  box-shadow: 0 18px 35px rgba(101, 64, 44, 0.14);
+  box-shadow: 0 18px 35px rgba(43, 89, 120, 0.1);
 }
 
 .panel-titulo {
   font-family: 'Fredoka', sans-serif;
   font-weight: 700;
   font-size: 36px;
-  color: #E8FF45;
-  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.12);
+  color: #2B5978;
+  text-shadow: 0 3px 0 #FFFFFF;
   margin-bottom: 18px;
 }
 
-/* Botones de acción con relieve 3D */
+/* Botones de acción con relieve suave */
 .btn-panel-pill {
   border: none !important;
   border-radius: 999px !important;
@@ -51,32 +49,45 @@
 .btn-panel-blanco {
   background-color: #FFFFFF !important;
   color: #2B5978 !important;
-  box-shadow: 0 4px 0 #C7DFEE;
+  box-shadow: 0 4px 0 #95C8EB;
+}
+
+.btn-panel-blanco:hover {
+  background-color: #F4FBFF !important;
 }
 
 .btn-panel-rojo {
-  background-color: #FF6B6B !important;
+  background-color: #FF7878 !important;
   color: #FFFFFF !important;
-  box-shadow: 0 4px 0 #C92A2A;
+  box-shadow: 0 4px 0 #D64545;
 }
 
+.btn-panel-rojo:hover {
+  background-color: #FA6464 !important;
+}
+
+/* Botón principal en azul medio amigable (menos estridente que el amarillo) */
 .btn-panel-amarillo {
-  background-color: #FFF101 !important;
-  color: #A27605 !important;
-  box-shadow: 0 4px 0 #C9A900;
+  background-color: #4EA8DE !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 0 #2B7AB0;
+}
+
+.btn-panel-amarillo:hover {
+  background-color: #3D99D1 !important;
 }
 
 /* Píldora de resumen (Partidas jugadas · Promedio) */
 .resumen-estadisticas-pill {
-  background-color: #FFFAB5;
-  color: #65402C;
+  background-color: #FFFFFF;
+  color: #2B5978;
   font-weight: 800;
   font-size: 16px;
   padding: 8px 20px;
   border-radius: 999px;
   display: inline-block;
   margin-bottom: 18px;
-  box-shadow: 0 4px 10px rgba(101, 64, 44, 0.08);
+  box-shadow: 0 4px 10px rgba(43, 89, 120, 0.08);
 }
 
 /* Contenedor redondeado para la tabla */
@@ -84,7 +95,7 @@
   background-color: #FFFFFF;
   border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(101, 64, 44, 0.1);
+  box-shadow: 0 8px 20px rgba(43, 89, 120, 0.08);
 }
 
 .tabla-granja {
@@ -93,25 +104,25 @@
 }
 
 .tabla-granja thead th {
-  background-color: #FFFAB5 !important;
-  color: #65402C !important;
+  background-color: #EBF7FF !important;
+  color: #2B5978 !important;
   font-weight: 800;
   font-size: 16px;
-  border-bottom: 2px solid #EFE48A !important;
+  border-bottom: 2px solid #CBEAFF !important;
   padding: 14px 16px !important;
 }
 
 .tabla-granja tbody td {
-  color: #4A3525;
+  color: #334E68;
   font-weight: 700;
   font-size: 15px;
   padding: 12px 16px !important;
-  border-color: #F3EFE0 !important;
+  border-color: #F0F6FA !important;
 }
 
 /* Etiquetas de rol redondeadas */
 .badge-rol-docente {
-  background-color: #FFF101;
+  background-color: #FFF3B0;
   color: #8C6400;
   font-weight: 800;
   padding: 5px 14px;
@@ -121,11 +132,18 @@
 }
 
 .badge-rol-nino {
-  background-color: #B2E1FF;
+  background-color: #D4EFFF;
   color: #2B5978;
   font-weight: 800;
   padding: 5px 14px;
   border-radius: 999px;
   font-size: 13px;
   display: inline-block;
+}
+.subtitulo-tabla {
+  font-family: 'M PLUS Rounded 1c', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #2B5978;
+  padding-left: 8px;
 }
