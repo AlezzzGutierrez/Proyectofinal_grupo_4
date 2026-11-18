@@ -11,7 +11,7 @@ const ControlAudio = () => {
             <Button
                 variant="dark"
                 className="position-fixed bottom-0 end-0 m-3 rounded-circle shadow"
-                style={{ width: "50px", height: "50px", zIndex: 1000 }}
+                style={{ width: "70px", height: "70px", zIndex: 1000 }}
                 onClick={() => setShow(true)}
                 title="Ajustes de sonido"
             >

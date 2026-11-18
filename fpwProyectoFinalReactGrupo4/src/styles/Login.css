@@ -201,10 +201,36 @@ h1, h2, h3, h4 {
   background-color: #FFFAB5;
   color: #65402C;
   font-weight: 800;
-  font-size: 16px;
-  padding: 8px 22px;
+  font-size: 14px;
+  padding: 6px 8px 6px 16px;
   border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 10px rgba(101, 64, 44, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(101, 64, 44, 0.08);
+}
+
+.btn-cambiar-rol {
+  background-color: #FFF101;
+  color: #65402C;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 0 #D8C96A;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-cambiar-rol:hover {
+  background-color: #FFF101;
+  color: #65402C;
+  transform: translateY(-1px);
+}
+
+.btn-cambiar-rol:active {
+  transform: translateY(1px);
 }
