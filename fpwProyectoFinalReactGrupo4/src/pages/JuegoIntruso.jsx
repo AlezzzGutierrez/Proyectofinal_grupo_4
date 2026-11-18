@@ -5,6 +5,7 @@ import { PUNTOS_POR_ACIERTO } from "../services/JuegoService";
 import { useNavigate } from "react-router-dom";
 import { useJuego } from "../hooks/useJuego.js";
 import imagenService from "../services/imagenService";
+import audioService from "../services/audioService";
 import "../styles/JuegoIntruso.css";
 
 export const JuegoIntruso = () => {
@@ -38,10 +39,17 @@ export const JuegoIntruso = () => {
     cargarImagenesRonda();
   }, [rondaActual]);
 
-  const seleccionarAnimal = (animal) => {
+ const seleccionarAnimal = (animal) => {
     if (respuesta) return;
     const acerto = animal.esIntruso;
-    if (acerto) setPuntaje((prev) => prev + PUNTOS_POR_ACIERTO);
+
+    if (acerto) {
+      setPuntaje((prev) => prev + PUNTOS_POR_ACIERTO);
+      audioService.reproducirAcierto();
+    } else {
+      audioService.reproducirError();
+    }
+
     setRespuesta({ elegida: animal.nombre, acerto });
   };
 

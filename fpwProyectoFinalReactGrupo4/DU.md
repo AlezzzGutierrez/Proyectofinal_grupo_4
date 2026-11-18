@@ -25,7 +25,6 @@ Participación en el desarrollo del proyecto final en React (juego educativo par
 
 ### Archivos (Modificados, Creados, Eliminados)
 
-<!-- Confirmar la lista exacta con: git show --stat <hash> de cada uno de mis commits -->
 
 **Creados:**
 - `src/pages/Resultados.jsx`
@@ -110,29 +109,44 @@ Sí: Se utilizó la herramienta DeepSeek para la corrección de errores de sinta
 
 --
 
-# [Apellido, Nombre]
+# Gutierrez, Gianella Alexandra
 
-## Proyecto Final - Grupo N°4 / [Título de lo que hiciste]
+## Proyecto Final - Grupo N°4 / Navegación, Contexto de Juego, Multimedia y Diseño Visual 
 
-## Fecha de Actualización: [dd/mm/aaaa]
+## Fecha de Actualización: 18/11/2026
 
-[Descripción breve de lo que desarrollaste.]
+Me encargué de la conexión e integración de las distintas pantallas de la aplicación mediante rutas públicas y protegidas, la creación del contexto global para la gestión de datos y puntajes de los juegos, la incorporación de música de fondo y efectos de sonido interactivos, el diseño visual y estilos CSS completos de la plataforma, la implementación de la pantalla de selección de rol de usuario, y el mantenimiento general y distribución de tareas dentro del proyecto.
 
 ### Métodos y elementos utilizados
 
-- `[método o elemento]`: [para qué se usó].
-- `[método o elemento]`: [para qué se usó].
+- `react-router-dom` (`Routes`, `Route`, `useNavigate`, `Link`, ruta comodín `*`): para conectar todas las vistas de la aplicación, gestionar la navegación entre pantallas y configurar la página de error 404 personalizada.
+- `React Context` y `Custom Hooks` (`JuegoContext`, `useJuego`, `useAuthorization`): para centralizar, compartir y persistir los datos, estados y puntajes de las partidas entre los distintos componentes.
+- `React Hooks` (`useState`, `useEffect`): para controlar el flujo de rondas, puntajes, estados de respuesta y la carga dinámica de recursos multimedia.
+- `Axios` y funciones asíncronas (`async/await`, `api.head`, `audioService`, `imagenService`): para verificar y cargar de forma asíncrona la música de fondo, los efectos de sonido de acierto/error y las imágenes de los minijuegos desde la carpeta pública.
+- `React Bootstrap` y hojas de estilo `CSS` personalizadas: para estructurar el diseño responsivo, adaptar una paleta infantil pastel (tipografías *Fredoka* y *M PLUS Rounded 1c*, botones con relieve 3D y tarjetas redondeadas) y organizar el panel del docente.
+- `sessionStorage` y `Array.filter` / `Array.reduce`: para gestionar los datos del jugador activo según su rol y separar las estadísticas y promedios reales de los niños respecto a las partidas de prueba de los docentes.
 
 ### Archivos (Modificados, Creados, Eliminados)
 
 **Creados:**
-- `[ruta del archivo]`
+- `src/styles/` (todos los archivos CSS del proyecto: `SeleccionUsuario.css`, `PanelDocente.css`, `JuegoComida.css`, `JuegoIntruso.css`, etc.)
+- `src/routes/` (archivo de configuración y protección de rutas de la aplicación)
+- `src/context/JuegoContext.jsx`
+- `src/hooks/useJuego.js`
+- `src/music/` (creada inicialmente en `src` y luego trasladada a `public/music/`)
+- `public/img/` (recursos gráficos de los animales y elementos de los juegos)
 
 **Modificados:**
-- `[ruta del archivo]`
+- `src/App.jsx`
+- `src/components/Menu.jsx`
+- `src/components/PanelDocente.jsx`
+- `src/components/JuegoComida.jsx`
+- `src/components/JuegoIntruso.jsx`
+- `src/components/Error.jsx`
+- `src/services/audioService.js`
 
-**Eliminados:** [Ninguno / indicar cuáles]
+**Eliminados:** Ninguno (únicamente se reubicó la carpeta `music` hacia `public` para su carga mediante Axios).
 
 ### Uso de IA
 
-[Sí / No]: [qué herramienta usaste (Gemini, ChatGPT, Claude, etc.) y para qué].
+Sí: utilicé Gemini como copiloto de desarrollo para comprender mejor el código implementado por mis compañeros, resolver estructuras lógicas que presentaron complejidad (como el filtrado de roles y la integración de audio con Axios), y diseñar la estética visual general de la página, sus hojas de estilo CSS y recursos gráficos.

@@ -28,7 +28,8 @@ const router = createBrowserRouter([
                         <PanelDocente />
                     </RutaDocente>
                 )
-            }
+            },
+            { path: "*", element: <Error /> }
         ]
     }
 ]);

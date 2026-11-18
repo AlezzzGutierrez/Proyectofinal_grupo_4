@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import authService from "../services/authService";
 import { useAuthorization } from "../hooks/useAuthorization";
 import { validarNombre, validarClave } from "../services/validacion";
@@ -15,14 +15,19 @@ const LoginUnico = () => {
     const [rol, setRol] = useState(esDocente ? "docente" : "nino");
     const [esRegistro, setEsRegistro] = useState(false);
     const [error, setError] = useState("");
-    
+
     const { saveSession } = useAuthorization();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setRol(esDocente ? "docente" : "nino");
+        setError("");
+    }, [esDocente]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
-        
+
         const errorNombre = validarNombre(nombre);
         const errorClave = validarClave(clave);
 
@@ -49,6 +54,16 @@ const LoginUnico = () => {
         } else {
             const usuario = await authService.login(nombre, clave);
             if (usuario) {
+                
+                if (usuario.rol !== rol) {
+                    setError(
+                        rol === "docente"
+                            ? "Esta cuenta pertenece a un Niño. Usá el botón 'Cambiar rol' para ingresar."
+                            : "Esta cuenta pertenece a un Docente. Usá el botón 'Cambiar rol' para ingresar."
+                    );
+                    return;
+                }
+
                 saveSession(usuario);
                 navigate(usuario.rol === "docente" ? "/panel" : "/comida");
             } else {
@@ -71,7 +86,7 @@ const LoginUnico = () => {
                                 con actividades simples, coloridas y diseñadas especialmente para su edad.
                             </p>
                         </div>
-                        
+
                         <div className="nubes-inferiores">
                             <svg viewBox="0 0 800 110" preserveAspectRatio="none" className="nubes-svg">
                                 <path
@@ -88,13 +103,21 @@ const LoginUnico = () => {
                         <h4 className="titulo-login mb-4 text-center">
                             {esRegistro ? "Crear una cuenta nueva" : "Iniciar Sesión"}
                         </h4>
-                        
+
                         <div className="rol-badge-pill">
-                            {esDocente
-                                ? " Estás accediendo como Docente"
-                                : " Estás accediendo como Niño"}
+                            <span>
+                                {esDocente
+                                    ? "Estás accediendo como Docente"
+                                    : "Estás accediendo como Niño"}
+                            </span>
+                            <Link
+                                to={esDocente ? "/login-nino" : "/login-docente"}
+                                className="btn-cambiar-rol"
+                            >
+                                Cambiar rol
+                            </Link>
                         </div>
-                        
+
                         <Form onSubmit={handleSubmit}>
                             {error && (
                                 <Alert variant="danger" className="rounded-4 py-2 text-center fs-6">

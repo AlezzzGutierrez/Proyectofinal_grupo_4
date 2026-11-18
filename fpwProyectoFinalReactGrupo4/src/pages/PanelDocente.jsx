@@ -1,16 +1,23 @@
 import { useState } from "react";
-import { Alert, Button, Container, Table, Badge } from "react-bootstrap";
+import { Alert, Button, Container, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import resultadosService from "../services/resultadosService";
 import { useAuthorization } from "../hooks/useAuthorization";
+import "../styles/PanelDocente.css";
 
 const PanelDocente = () => {
     const [resultados, setResultados] = useState(() => resultadosService.obtenerTodos());
     const navigate = useNavigate();
-    const { sessionUser } = useAuthorization(); 
+    const { sessionUser } = useAuthorization();
 
-    const promedio = resultados.length
-        ? Math.round(resultados.reduce((suma, resultado) => suma + resultado.total, 0) / resultados.length)
+    const resultadosNinos = resultados.filter((r) => r.rol !== "docente");
+    const resultadosDocentes = resultados.filter((r) => r.rol === "docente");
+
+    const promedioNinos = resultadosNinos.length
+        ? Math.round(
+            resultadosNinos.reduce((suma, resultado) => suma + resultado.total, 0) /
+            resultadosNinos.length
+        )
         : 0;
 
     const formatoFecha = (fechaIso) =>
@@ -25,7 +32,6 @@ const PanelDocente = () => {
         }
     };
 
-    // Función para que el docente juegue
     const jugarComoDocente = () => {
         sessionStorage.setItem("jugadorActualNombre", sessionUser?.nombre || "Docente");
         sessionStorage.setItem("jugadorActualRol", "docente");
@@ -33,62 +39,139 @@ const PanelDocente = () => {
     };
 
     return (
-        <Container className="mt-4" style={{ maxWidth: "900px" }}>
-            <h2 className="fw-bold text-primary fs-4 mb-3">Panel del Docente</h2>
+        <div className="panel-docente-wrapper">
+            <Container fluid className="d-flex justify-content-center">
+                <div className="panel-docente-card">
+                    <h2 className="panel-titulo">Panel del Docente</h2>
 
-            <div className="d-flex gap-2 flex-wrap mb-3 align-items-center">
-                <Button variant="outline-primary" onClick={actualizar}>
-                    Actualizar
-                </Button>
-                <Button variant="outline-danger" onClick={borrar} disabled={!resultados.length}>
-                    Borrar resultados
-                </Button>
-                
-                {/* BOTÓN PARA JUGAR */}
-                <Button variant="success" onClick={jugarComoDocente} className="ms-auto">
-                    🎮 Jugar una partida (Modo Docente)
-                </Button>
-            </div>
+                    <div className="d-flex gap-3 flex-wrap mb-4 align-items-center">
+                        <Button className="btn-panel-pill btn-panel-blanco" onClick={actualizar}>
+                            Actualizar
+                        </Button>
+                        <Button
+                            className="btn-panel-pill btn-panel-rojo"
+                            onClick={borrar}
+                            disabled={!resultados.length}
+                        >
+                            Borrar resultados
+                        </Button>
 
-            {resultados.length === 0 ? (
-                <Alert variant="info">Todavía no hay resultados guardados.</Alert>
-            ) : (
-                <>
-                    <p>
-                        Partidas jugadas: <strong>{resultados.length}</strong> · Promedio: <strong>{promedio} / 100</strong>
-                    </p>
+                        <Button
+                            className="btn-panel-pill btn-panel-amarillo ms-auto"
+                            onClick={jugarComoDocente}
+                        >
+                            🎮 Jugar una partida (Modo Docente)
+                        </Button>
+                    </div>
 
-                    <Table striped bordered hover responsive>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Rol</th>
-                                <th className="text-center">¡Hora de Comer!</th>
-                                <th className="text-center">El Intruso</th>
-                                <th className="text-center">Total</th>
-                                <th>Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {resultados.map((resultado, index) => (
-                                <tr key={index}>
-                                    <td>{resultado.nombre}</td>
-                                    <td>
-                                        <Badge bg={resultado.rol === "docente" ? "warning" : "info"} text="dark">
-                                            {resultado.rol === "docente" ? "Docente" : "Niño"}
-                                        </Badge>
-                                    </td>
-                                    <td className="text-center">{resultado.puntajeComida} / 50</td>
-                                    <td className="text-center">{resultado.puntajeIntruso} / 50</td>
-                                    <td className="text-center"><strong>{resultado.total} / 100</strong></td>
-                                    <td>{formatoFecha(resultado.fecha)}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </>
-            )}
-        </Container>
+                    {resultados.length === 0 ? (
+                        <Alert variant="light" className="rounded-4 fw-bold text-center border-0 shadow-sm">
+                            Todavía no hay resultados guardados.
+                        </Alert>
+                    ) : (
+                        <>
+                          
+                            <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                <span className="subtitulo-tabla">Resultados de los Niños</span>
+                                <div className="resumen-estadisticas-pill mb-0">
+                                    Partidas de niños: {resultadosNinos.length} · Promedio: {promedioNinos} / 100
+                                </div>
+                            </div>
+
+                            {resultadosNinos.length === 0 ? (
+                                <Alert variant="light" className="rounded-4 fw-bold text-center border-0 shadow-sm mb-4">
+                                    Aún no hay partidas jugadas por niños.
+                                </Alert>
+                            ) : (
+                                <div className="tabla-resultados-contenedor mb-5">
+                                    <Table hover responsive className="tabla-granja">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Rol</th>
+                                                <th className="text-center">¡Hora de Comer!</th>
+                                                <th className="text-center">El Intruso</th>
+                                                <th className="text-center">Total</th>
+                                                <th>Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {resultadosNinos.map((resultado, index) => (
+                                                <tr key={index}>
+                                                    <td>{resultado.nombre}</td>
+                                                    <td>
+                                                        <span className="badge-rol-nino">Niño</span>
+                                                    </td>
+                                                    <td className="text-center">
+                                                        {resultado.puntajeComida} / 50
+                                                    </td>
+                                                    <td className="text-center">
+                                                        {resultado.puntajeIntruso} / 50
+                                                    </td>
+                                                    <td className="text-center">
+                                                        <strong>{resultado.total} / 100</strong>
+                                                    </td>
+                                                    <td>{formatoFecha(resultado.fecha)}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            )}
+
+                            {resultadosDocentes.length > 0 && (
+                                <>
+
+                                    <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                        <span className="subtitulo-tabla">Partidas de Prueba (Docentes)</span>
+                                        <div className="resumen-estadisticas-pill mb-0">
+                                            Pruebas realizadas: {resultadosDocentes.length}
+                                        </div>
+                                    </div>
+
+                                    <div className="tabla-resultados-contenedor">
+                                        <Table hover responsive className="tabla-granja">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Rol</th>
+                                                    <th className="text-center">¡Hora de Comer!</th>
+                                                    <th className="text-center">El Intruso</th>
+                                                    <th className="text-center">Total</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {resultadosDocentes.map((resultado, index) => (
+                                                    <tr key={index}>
+                                                        <td>{resultado.nombre}</td>
+                                                        <td>
+                                                            <span className="badge-rol-docente">
+                                                                Docente
+                                                            </span>
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {resultado.puntajeComida} / 50
+                                                        </td>
+                                                        <td className="text-center">
+                                                            {resultado.puntajeIntruso} / 50
+                                                        </td>
+                                                        <td className="text-center">
+                                                            <strong>{resultado.total} / 100</strong>
+                                                        </td>
+                                                        <td>{formatoFecha(resultado.fecha)}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                </div>
+            </Container>
+        </div>
     );
 };
 
